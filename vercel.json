@@ -1,0 +1,32 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "nodeVersion": "20.x",
+  "env": {
+    "NEXT_PUBLIC_SUPABASE_URL": "@next_public_supabase_url",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@next_public_supabase_anon_key",
+    "SUPABASE_SERVICE_ROLE_KEY": "@supabase_service_role_key",
+    "GOOGLE_API_KEY": "@google_api_key",
+    "NEXT_PUBLIC_APP_URL": "@next_public_app_url"
+  },
+  "envPrefix": "NEXT_",
+  "regions": ["iad1"],
+  "functions": {
+    "api/**": {
+      "memory": 512,
+      "maxDuration": 60
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/.*",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}

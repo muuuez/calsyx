@@ -1,0 +1,105 @@
+"use client";
+
+import { useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+
+export default function LoginPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setError(null);
+      setIsLoading(true);
+
+      try {
+        const response = await fetch("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+
+        if (!response.ok) {
+          const data = await response.json() as { error?: string };
+          throw new Error(data.error || "Login failed");
+        }
+
+        router.push("/chat");
+      } catch (err) {
+        const message = err instanceof Error ? err.message : "Login error";
+        setError(message);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [email, password, router]
+  );
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
+      <div className="w-full max-w-md rounded-lg border border-gray-200 bg-white p-8 shadow-sm">
+        <h1 className="mb-6 text-center text-2xl font-bold text-gray-900">
+          Sign In
+        </h1>
+
+        {error && (
+          <div className="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="mt-1 w-full rounded border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+              disabled={isLoading}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="mt-1 w-full rounded border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+              disabled={isLoading}
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full rounded bg-blue-600 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:bg-gray-400"
+          >
+            {isLoading ? "Signing in..." : "Sign In"}
+          </button>
+        </form>
+
+        <p className="mt-4 text-center text-sm text-gray-600">
+          Don't have an account?{" "}
+          <Link href="/auth/register" className="font-medium text-blue-600 hover:text-blue-700">
+            Register
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
+}
