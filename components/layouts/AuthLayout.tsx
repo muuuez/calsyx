@@ -35,7 +35,7 @@ export default function AuthLayout({
           )}
 
           {/* Form Card */}
-          <Card className="border border-neutral-200 bg-white shadow-sm rounded-lg dark:border-neutral-800 dark:bg-neutral-900">
+          <Card className="border border-neutral-300/50 bg-white shadow-sm rounded-lg dark:border-neutral-700/50 dark:bg-neutral-900">
             {children}
           </Card>
         </div>

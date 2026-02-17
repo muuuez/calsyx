@@ -112,10 +112,10 @@ export default function RegisterPage() {
       <CardContent className="space-y-4 p-6">
         {/* Error Alert */}
         {error && (
-          <div className="flex gap-4 rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-900/50 dark:bg-red-950/50">
-            <AlertCircle className="h-5 w-5 flex-shrink-0 text-red-600 dark:text-red-400" />
+          <div className="flex gap-3 rounded-lg border border-red-300/50 bg-red-50/50 p-3 dark:border-red-900/30 dark:bg-red-950/30">
+            <AlertCircle className="h-4 w-4 flex-shrink-0 text-red-600 dark:text-red-400 mt-0.5" />
             <div className="flex-1">
-              <p className="text-sm font-medium text-red-900 dark:text-red-200">
+              <p className="text-sm text-red-900 dark:text-red-200">
                 {error}
               </p>
             </div>
@@ -141,7 +141,7 @@ export default function RegisterPage() {
                 placeholder="you@example.com"
                 required
                 disabled={isLoading}
-                className="h-11 border-neutral-300 bg-neutral-50 text-sm focus-visible:ring-2 focus-visible:ring-blue-500 dark:border-neutral-700 dark:bg-neutral-900"
+                className="h-9 border border-neutral-300/50 bg-white text-sm focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700/50 dark:bg-neutral-900"
               />
               {suggestedDomain && emailReqs.domain && (
                 <button
@@ -174,7 +174,7 @@ export default function RegisterPage() {
                 placeholder="Create a strong password"
                 required
                 disabled={isLoading}
-                className="h-11 border-neutral-300 bg-neutral-50 pr-11 text-sm focus-visible:ring-2 focus-visible:ring-blue-500 dark:border-neutral-700 dark:bg-neutral-900"
+                className="h-9 border border-neutral-300/50 bg-white pr-9 text-sm focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700/50 dark:bg-neutral-900"
               />
               <Button
                 type="button"
@@ -288,7 +288,7 @@ export default function RegisterPage() {
                 placeholder="Re-enter your password"
                 required
                 disabled={isLoading}
-                className="h-11 border-neutral-300 bg-neutral-50 pr-11 text-sm focus-visible:ring-2 focus-visible:ring-blue-500 dark:border-neutral-700 dark:bg-neutral-900"
+                className="h-9 border border-neutral-300/50 bg-white pr-9 text-sm focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700/50 dark:bg-neutral-900"
               />
               <Button
                 type="button"
@@ -345,7 +345,7 @@ export default function RegisterPage() {
           <Button
             type="submit"
             disabled={isLoading || !agreed}
-            className="h-11 w-full bg-blue-600 hover:bg-blue-700 text-base font-medium text-white dark:bg-blue-700 dark:hover:bg-blue-800 disabled:opacity-50"
+            className="h-9 w-full bg-blue-600 hover:bg-blue-700 text-sm font-medium text-white dark:bg-blue-700 dark:hover:bg-blue-800 disabled:opacity-50"
           >
             {isLoading ? "Creating account..." : "Create Account"}
           </Button>
@@ -354,7 +354,7 @@ export default function RegisterPage() {
         {/* Divider */}
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-neutral-200 dark:border-neutral-700" />
+            <div className="w-full border-t border-neutral-300/50 dark:border-neutral-700/50" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
             <span className="bg-white px-2 text-neutral-500 dark:bg-neutral-950 dark:text-neutral-400">
