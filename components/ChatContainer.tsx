@@ -152,11 +152,11 @@ function ChatContainerComponent({
   const formattedMessages = useMemo(() => messages, [messages]);
 
   return (
-    <ScrollArea className="flex-1 bg-white dark:bg-neutral-900">
+    <ScrollArea className="flex-1 bg-neutral-50 dark:bg-neutral-950">
       <div className="mx-auto max-w-3xl space-y-4 p-6">
         {/* Empty State */}
         {formattedMessages.length === 0 && !isLoading && (
-          <div className="flex h-96 items-center justify-center rounded-lg border-2 border-dashed border-neutral-200 bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-800/50">
+          <div className="flex h-96 items-center justify-center rounded-lg border-2 border-dashed border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900">
             <div className="text-center">
               <div className="mb-3 text-4xl">💬</div>
               <p className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">
