@@ -3,7 +3,6 @@
 import { useCallback, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Card } from "@/components/ui/card";
 import { Send, Paperclip, Mic, Smile, Loader2 } from "lucide-react";
 
 interface ChatInputProps {
@@ -107,10 +106,9 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
   };
 
   return (
-    <div className="border-t border-neutral-200 bg-white p-4 shadow-lg shadow-neutral-200/10 dark:border-neutral-800 dark:bg-neutral-950">
-      <div className="mx-auto max-w-3xl">
-        <Card className="border border-neutral-200 bg-white shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
-          <div className="space-y-3 p-4">
+    <div className="border-t border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+      <div className="mx-auto max-w-3xl px-6 py-4">
+        <div className="space-y-4">
             {/* Textarea + Actions Row */}
             <div className="flex gap-3">
               <Textarea
@@ -131,7 +129,7 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
                   onClick={handleSend}
                   disabled={!message.trim() || isLoading}
                   size="icon"
-                  className="h-10 w-10 shrink-0 bg-gradient-to-br from-blue-600 to-indigo-600 shadow-md hover:shadow-lg dark:from-blue-700 dark:to-indigo-700"
+                  className="h-10 w-10 shrink-0 bg-blue-600 dark:bg-blue-700"
                 >
                   {isLoading ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -210,7 +208,6 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
               for new line
             </div>
           </div>
-        </Card>
       </div>
     </div>
   );

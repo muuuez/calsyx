@@ -52,7 +52,7 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
       {/* Main Content */}
       <div className="flex flex-1 flex-col overflow-hidden">
         {/* Header Bar */}
-        <header className="shrink-0 border-b border-neutral-200 bg-white px-6 py-4 shadow-sm dark:border-neutral-800 dark:bg-neutral-950">
+        <header className="shrink-0 border-b border-neutral-200 bg-white px-6 py-4 dark:border-neutral-800 dark:bg-neutral-950">
           <div className="flex items-center justify-between gap-4">
             {/* Left: Mobile Menu + Title */}
             <div className="flex items-center gap-4">
@@ -106,7 +106,7 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
                 size="icon"
                 title="Settings"
               >
-                <div className="h-5 w-5 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600" />
+                <div className="h-5 w-5 rounded-full bg-blue-600" />
                 <span className="sr-only">Settings</span>
               </Button>
             </div>
@@ -120,7 +120,7 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
 
         {/* Mobile Floating Action Button */}
         <Button
-          className="fixed bottom-6 right-6 hidden gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 shadow-lg hover:shadow-xl max-sm:flex sm:hidden"
+          className="fixed bottom-6 right-6 hidden gap-2 rounded-full bg-blue-600 shadow-sm hover:shadow-md max-sm:flex sm:hidden"
           onClick={() => {
             // This would trigger new chat from the page component
             const event = new CustomEvent("createNewChat");

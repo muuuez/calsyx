@@ -301,7 +301,7 @@ export default function ChatPage(): React.ReactElement {
     >
       {/* Error Banner */}
       {error && (
-        <div className="border-b border-red-200 bg-red-50 px-4 py-3 shadow-sm dark:border-red-900/50 dark:bg-red-950/50">
+        <div className="border-b border-red-200 bg-red-50 px-4 py-3 dark:border-red-900/50 dark:bg-red-950/50">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               <AlertCircle className="h-5 w-5 flex-shrink-0 text-red-600 dark:text-red-400" />
@@ -324,7 +324,7 @@ export default function ChatPage(): React.ReactElement {
         {selectedChatId ? (
           <>
             {/* Chat Header */}
-            <div className="shrink-0 border-b border-neutral-200 bg-white px-6 py-4 shadow-sm dark:border-neutral-800 dark:bg-neutral-950">
+            <div className="shrink-0 border-b border-neutral-200 bg-white px-6 py-4 dark:border-neutral-800 dark:bg-neutral-950">
               <div className="flex items-center justify-between gap-4">
                 <div className="min-w-0 flex-1">
                   <h2 className="truncate text-lg font-semibold text-neutral-900 dark:text-neutral-50">
@@ -404,7 +404,7 @@ export default function ChatPage(): React.ReactElement {
             <ChatInput onSend={handleSendMessage} isLoading={isLoading} />
           </>
         ) : (
-          <div className="flex flex-1 items-center justify-center bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-950 dark:to-neutral-900">
+          <div className="flex flex-1 items-center justify-center">
             <div className="space-y-6 text-center">
               <div className="inline-block">
                 <div className="text-6xl">💬</div>
@@ -421,7 +421,7 @@ export default function ChatPage(): React.ReactElement {
                 onClick={handleNewChat}
                 disabled={isLoading}
                 size="lg"
-                className="bg-gradient-to-r from-blue-600 to-indigo-600 shadow-lg hover:shadow-xl dark:from-blue-700 dark:to-indigo-700"
+                className="bg-blue-600 dark:bg-blue-700"
               >
                 Start New Chat
               </Button>

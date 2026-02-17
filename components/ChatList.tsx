@@ -124,12 +124,12 @@ export default function ChatList({
   return (
     <>
       {/* Sidebar */}
-      <div className="flex w-64 flex-col border-r border-neutral-200 bg-gradient-to-b from-neutral-50 to-white shadow-sm dark:border-neutral-800 dark:from-neutral-950 dark:to-neutral-900">
+      <div className="flex w-64 flex-col border-r border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
         {/* New Chat Button - Sticky Top */}
-        <div className="shrink-0 space-y-3 border-b border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-950">
+        <div className="shrink-0 space-y-4 border-b border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-950">
           <Button
             onClick={onNewChat}
-            className="w-full gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 shadow-md hover:shadow-lg dark:from-blue-700 dark:to-indigo-700"
+            className="w-full gap-2 rounded-lg bg-blue-600 dark:bg-blue-700"
             size="sm"
           >
             <Plus className="h-4 w-4" />
@@ -151,7 +151,7 @@ export default function ChatList({
 
         {/* Chat List - Scrollable */}
         <ScrollArea className="flex-1">
-          <div className="space-y-1 p-3">
+          <div className="space-y-1 p-4">
             {chats.length === 0 ? (
               <div className="px-4 py-8 text-center">
                 <p className="text-sm text-neutral-500 dark:text-neutral-400">
@@ -211,8 +211,8 @@ export default function ChatList({
                                 onClick={() => onSelectChat(chat.id)}
                                 className={`flex-1 truncate rounded-lg px-3 py-2.5 text-left text-sm transition-all duration-150 ${
                                   selectedChatId === chat.id
-                                    ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-md"
-                                    : "text-neutral-700 hover:bg-neutral-200/50 dark:text-neutral-300 dark:hover:bg-neutral-800/50"
+                                    ? "bg-blue-600 text-white"
+                                    : "text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800"
                                 }`}
                               >
                                 <span className="line-clamp-1">

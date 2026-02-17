@@ -14,12 +14,8 @@ export default function AuthLayout({
 }: AuthLayoutProps) {
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
-      {/* Animated Background Gradient */}
-      <div className="fixed inset-0 -z-10 bg-gradient-to-br from-blue-50 via-neutral-50 to-indigo-50 dark:from-blue-950 dark:via-neutral-950 dark:to-indigo-950" />
-      
-      {/* Animated Blobs */}
-      <div className="fixed -left-64 -top-64 h-96 w-96 rounded-full bg-blue-200/20 blur-3xl dark:bg-blue-900/20" />
-      <div className="fixed -right-64 -bottom-64 h-96 w-96 rounded-full bg-indigo-200/20 blur-3xl dark:bg-indigo-900/20" />
+      {/* Background */}
+      <div className="fixed inset-0 -z-10 bg-white dark:bg-neutral-950" />
 
       {/* Content */}
       <div className="relative flex min-h-screen w-full items-center justify-center px-4 py-12">
@@ -42,7 +38,7 @@ export default function AuthLayout({
           )}
 
           {/* Form Card */}
-          <Card className="border border-neutral-200/50 bg-white/80 backdrop-blur-sm shadow-xl dark:border-neutral-800/50 dark:bg-neutral-950/80">
+          <Card className="border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
             {children}
           </Card>
 

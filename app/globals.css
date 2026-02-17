@@ -302,15 +302,6 @@ input[type="radio"] {
   @apply overflow-hidden text-ellipsis whitespace-nowrap;
 }
 
-/* Gradient Backgrounds */
-.gradient-primary {
-  @apply bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-700 dark:to-indigo-700;
-}
-
-.gradient-primary-text {
-  @apply bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400;
-}
-
 /* Shadow Utilities */
 .shadow-sm-md {
   @apply shadow-sm dark:shadow-none;
@@ -323,11 +314,6 @@ input[type="radio"] {
 /* Responsive Container */
 .container-max {
   @apply mx-auto max-w-3xl px-4 sm:px-6 lg:px-8;
-}
-
-/* Glass Morphism */
-.glass {
-  @apply rounded-lg border border-white/20 bg-white/10 backdrop-blur-lg dark:border-neutral-700/20 dark:bg-neutral-900/10;
 }
 
 /* Disabled State */

@@ -92,10 +92,10 @@ function MessageBubble({ msg }: { msg: Message }) {
         )}
 
         <Card
-          className={`rounded-2xl px-5 py-3 transition-all duration-200 ${
+          className={`rounded-lg px-5 py-3 transition-all duration-200 ${
             msg.role === "user"
-              ? "bg-gradient-to-br from-indigo-600 to-blue-600 text-white shadow-md hover:shadow-lg dark:from-indigo-700 dark:to-blue-700"
-              : "border border-neutral-200 bg-white text-neutral-900 shadow-sm hover:shadow-md dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-50"
+              ? "bg-blue-600 text-white dark:bg-blue-700"
+              : "border border-neutral-200 bg-white text-neutral-900 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-50"
           }`}
         >
           <div className="space-y-2">
@@ -152,11 +152,11 @@ function ChatContainerComponent({
   const formattedMessages = useMemo(() => messages, [messages]);
 
   return (
-    <ScrollArea className="flex-1 bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-950 dark:to-neutral-900">
+    <ScrollArea className="flex-1 bg-white dark:bg-neutral-900">
       <div className="mx-auto max-w-3xl space-y-4 p-6">
         {/* Empty State */}
         {formattedMessages.length === 0 && !isLoading && (
-          <div className="flex h-96 items-center justify-center rounded-2xl border-2 border-dashed border-neutral-300 bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-900/50">
+          <div className="flex h-96 items-center justify-center rounded-lg border-2 border-dashed border-neutral-200 bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-800/50">
             <div className="text-center">
               <div className="mb-3 text-4xl">💬</div>
               <p className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">
@@ -177,7 +177,7 @@ function ChatContainerComponent({
         {/* Loading State */}
         {isLoading && (
           <div className="flex justify-start">
-            <Card className="rounded-2xl border border-neutral-200 bg-white px-5 py-3 dark:border-neutral-700 dark:bg-neutral-900">
+            <Card className="rounded-lg border border-neutral-200 bg-white px-5 py-3 dark:border-neutral-700 dark:bg-neutral-900">
               <div className="flex gap-2">
                 <Skeleton className="h-2 w-2 animate-pulse rounded-full" />
                 <Skeleton className="h-2 w-2 animate-pulse rounded-full" style={{ animationDelay: "100ms" }} />
