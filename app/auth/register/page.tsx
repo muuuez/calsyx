@@ -195,7 +195,7 @@ export default function RegisterPage() {
             {password && (
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
-                  <div className="flex-1 overflow-hidden rounded-full bg-neutral-200 dark:bg-neutral-800">
+                  <div className="flex-1 overflow-hidden rounded-lg bg-neutral-200 dark:bg-neutral-800">
                     <div
                       className={`h-2 transition-all ${strength.color}`}
                       style={{

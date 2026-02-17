@@ -38,26 +38,6 @@ export default function AuthLayout({
           <Card className="border border-neutral-200 bg-white shadow-sm rounded-lg dark:border-neutral-800 dark:bg-neutral-900">
             {children}
           </Card>
-
-          {/* Trust Badges */}
-          <div className="mt-6 flex flex-col items-center gap-4">
-            <div className="flex items-center gap-4 text-xs text-neutral-600 dark:text-neutral-400">
-              <div className="flex items-center gap-2">
-                <span className="text-lg">✓</span>
-                <span>Secure & Private</span>
-              </div>
-              <div className="h-1 w-1 rounded-full bg-neutral-300 dark:bg-neutral-700" />
-              <div className="flex items-center gap-2">
-                <span className="text-lg">🔒</span>
-                <span>End-to-End</span>
-              </div>
-            </div>
-
-            {/* Footer Text */}
-            <p className="text-center text-xs text-neutral-500 dark:text-neutral-400">
-              Part of AI Chatbox • Powered by OpenRouter
-            </p>
-          </div>
         </div>
       </div>
     </div>
