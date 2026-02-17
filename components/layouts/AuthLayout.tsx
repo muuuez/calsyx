@@ -1,4 +1,5 @@
 import React from "react";
+import { Logo } from "@/components/brand/logo";
 import { Card } from "@/components/ui/card";
 
 interface AuthLayoutProps {
@@ -20,9 +21,7 @@ export default function AuthLayout({
           {/* Header */}
           {title && (
             <div className="mb-8 space-y-4 text-center">
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-600">
-                <span className="text-xl font-bold text-white">AI</span>
-              </div>
+              <Logo size="lg" />
               <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50">
                 {title}
               </h1>

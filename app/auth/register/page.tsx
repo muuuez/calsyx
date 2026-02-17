@@ -3,6 +3,7 @@
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { BRAND } from "@/lib/brand";
 import AuthLayout from "@/components/layouts/AuthLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -106,8 +107,8 @@ export default function RegisterPage() {
 
   return (
     <AuthLayout
-      title="Create your account"
-      description="Join to start using AI Chat"
+      title={`Create your ${BRAND.name} account`}
+      description="Join to start using Calsyx"
     >
       <CardContent className="space-y-4 p-6">
         {/* Error Alert */}

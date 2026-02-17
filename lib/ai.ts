@@ -48,7 +48,7 @@ export async function generateChatResponse(
           "Authorization": `Bearer ${API_KEY}`,
           "Content-Type": "application/json",
           "HTTP-Referer": "http://localhost:3000",
-          "X-Title": "AI Chat App",
+          "X-Title": "Calsyx",
         },
         body: JSON.stringify({
           model: MODEL,
@@ -137,7 +137,7 @@ export async function generateChatTitle(message: string): Promise<AiResponse<str
           "Authorization": `Bearer ${API_KEY}`,
           "Content-Type": "application/json",
           "HTTP-Referer": "http://localhost:3000",
-          "X-Title": "AI Chat App",
+          "X-Title": "Calsyx",
         },
         body: JSON.stringify({
           model: MODEL,

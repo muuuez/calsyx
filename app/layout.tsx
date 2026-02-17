@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import { BRAND } from "@/lib/brand";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AI Chatbox",
-  description: "Chat with AI powered by Google Gemini",
+  title: {
+    default: BRAND.name,
+    template: `%s – ${BRAND.name}`,
+  },
+  description: BRAND.description,
 };
 
 export default function RootLayout({

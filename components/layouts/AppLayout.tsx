@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { BRAND } from "@/lib/brand";
+import { Logo } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
 import { Menu, Plus, Moon, Sun, HelpCircle, Settings } from "lucide-react";
 import {
@@ -52,9 +54,9 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
       {/* Main Content */}
       <div className="flex flex-1 flex-col overflow-hidden">
         {/* Header Bar - Premium SaaS */}
-        <header className="shrink-0 border-b border-neutral-200/50 dark:border-neutral-800/50 bg-white/50 dark:bg-neutral-950/50 backdrop-blur-sm px-6 py-3">
+        <header className="shrink-0 border-b border-neutral-200/50 dark:border-neutral-800/50 bg-white dark:bg-neutral-950 px-6 py-3 h-14">
           <div className="flex items-center justify-between gap-4">
-            {/* Left: Mobile Menu + Title */}
+            {/* Left: Mobile Menu + Logo + Brand */}
             <div className="flex items-center gap-3">
               {sidebar && (
                 <Button
@@ -67,10 +69,10 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
                   <span className="sr-only">Toggle sidebar</span>
                 </Button>
               )}
-              <h1 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">
-
-                AI Chatbox
-              </h1>
+              <Logo size="sm" />
+              <span className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">
+                {BRAND.name}
+              </span>
             </div>
 
             {/* Right: Actions */}
