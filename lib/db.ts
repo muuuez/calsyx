@@ -56,7 +56,7 @@ export async function getUserChats(userId: string): Promise<DbResponse<Chat[]>> 
       .select("*")
       .eq("user_id", userId)
       .is("deleted_at", null)
-      .order("updated_at", { ascending: false });
+      .order("created_at", { ascending: false });
 
     if (error) {
       return { success: false, error: error.message };

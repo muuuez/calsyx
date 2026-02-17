@@ -1,6 +1,26 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useState, useMemo } from "react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Plus, MoreVertical, Trash2, Search, Star, Edit2, Check, X } from "lucide-react";
 
 interface Chat {
   id: string;
@@ -24,6 +44,10 @@ export default function ChatList({
   onDeleteChat,
 }: ChatListProps) {
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [favorites, setFavorites] = useState<Set<string>>(new Set());
+  const [renameId, setRenameId] = useState<string | null>(null);
+  const [renamingTitle, setRenamingTitle] = useState("");
 
   const handleDelete = useCallback(
     (chatId: string) => {
@@ -33,70 +57,257 @@ export default function ChatList({
     [onDeleteChat]
   );
 
+  const toggleFavorite = (chatId: string) => {
+    setFavorites((prev) => {
+      const updated = new Set(prev);
+      if (updated.has(chatId)) {
+        updated.delete(chatId);
+      } else {
+        updated.add(chatId);
+      }
+      return updated;
+    });
+  };
+
+  const startRename = (chat: Chat) => {
+    setRenameId(chat.id);
+    setRenamingTitle(chat.title || "");
+  };
+
+  const formatDate = (date: string) => {
+    const d = new Date(date);
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    if (d.toDateString() === today.toDateString()) {
+      return "Today";
+    } else if (d.toDateString() === yesterday.toDateString()) {
+      return "Yesterday";
+    } else if (d.getTime() > today.getTime() - 7 * 24 * 60 * 60 * 1000) {
+      return "This Week";
+    } else {
+      return "Older";
+    }
+  };
+
+  // Filter and group chats
+  const groupedChats = useMemo(() => {
+    let filtered = chats.filter((chat) =>
+      (chat.title || "Untitled Chat")
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase())
+    );
+
+    // Sort favorites to top
+    const favChats = filtered.filter((c) => favorites.has(c.id));
+    const other = filtered.filter((c) => !favorites.has(c.id));
+
+    const grouped: Record<string, Chat[]> = {
+      "⭐ Favorites": favChats,
+    };
+
+    // Group others by date
+    const dateGroups: Record<string, Chat[]> = {};
+    other.forEach((chat) => {
+      const dateGroup = formatDate(chat.created_at);
+      if (!dateGroups[dateGroup]) {
+        dateGroups[dateGroup] = [];
+      }
+      dateGroups[dateGroup].push(chat);
+    });
+
+    Object.assign(grouped, dateGroups);
+    return grouped;
+  }, [chats, searchQuery, favorites]);
+
   return (
-    <div className="flex w-64 flex-col border-r border-gray-200 bg-gray-50">
-      <button
-        onClick={onNewChat}
-        className="m-4 rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
-      >
-        + New Chat
-      </button>
+    <>
+      {/* Sidebar */}
+      <div className="flex w-64 flex-col border-r border-neutral-200 bg-gradient-to-b from-neutral-50 to-white shadow-sm dark:border-neutral-800 dark:from-neutral-950 dark:to-neutral-900">
+        {/* New Chat Button - Sticky Top */}
+        <div className="shrink-0 space-y-3 border-b border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-950">
+          <Button
+            onClick={onNewChat}
+            className="w-full gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 shadow-md hover:shadow-lg dark:from-blue-700 dark:to-indigo-700"
+            size="sm"
+          >
+            <Plus className="h-4 w-4" />
+            New Chat
+          </Button>
 
-      <div className="flex-1 overflow-y-auto">
-        {chats.length === 0 ? (
-          <div className="p-4 text-center text-sm text-gray-500">
-            No chats yet
-          </div>
-        ) : (
-          <div className="space-y-1 p-2">
-            {chats.map((chat) => (
-              <div
-                key={chat.id}
-                className="group relative flex items-center"
-              >
-                <button
-                  onClick={() => onSelectChat(chat.id)}
-                  className={`flex-1 truncate rounded px-3 py-2 text-left text-sm transition-colors ${
-                    selectedChatId === chat.id
-                      ? "bg-blue-100 text-blue-900"
-                      : "text-gray-700 hover:bg-gray-200"
-                  }`}
-                >
-                  {chat.title || "Untitled Chat"}
-                </button>
-
-                <button
-                  onClick={() => setDeleteConfirm(chat.id)}
-                  className="hidden rounded p-1 text-gray-400 hover:bg-red-100 hover:text-red-600 group-hover:block"
-                  title="Delete chat"
-                >
-                  ✕
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {deleteConfirm && (
-        <div className="border-t border-gray-200 bg-red-50 p-3">
-          <p className="mb-2 text-sm text-gray-700">Delete this chat?</p>
-          <div className="flex gap-2">
-            <button
-              onClick={() => handleDelete(deleteConfirm)}
-              className="flex-1 rounded bg-red-600 px-2 py-1 text-xs font-medium text-white hover:bg-red-700"
-            >
-              Delete
-            </button>
-            <button
-              onClick={() => setDeleteConfirm(null)}
-              className="flex-1 rounded bg-gray-300 px-2 py-1 text-xs font-medium text-gray-700 hover:bg-gray-400"
-            >
-              Cancel
-            </button>
+          {/* Search Input */}
+          <div className="relative">
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-neutral-400" />
+            <Input
+              type="text"
+              placeholder="Search chats..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="h-9 border border-neutral-200 bg-neutral-50 pl-8 text-sm focus-visible:ring-2 focus-visible:ring-blue-500 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-50"
+            />
           </div>
         </div>
-      )}
-    </div>
+
+        {/* Chat List - Scrollable */}
+        <ScrollArea className="flex-1">
+          <div className="space-y-1 p-3">
+            {chats.length === 0 ? (
+              <div className="px-4 py-8 text-center">
+                <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                  No chats yet
+                </p>
+              </div>
+            ) : Object.entries(groupedChats).every(([_, items]) => items.length === 0) ? (
+              <div className="px-4 py-8 text-center">
+                <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                  No chats match "{searchQuery}"
+                </p>
+              </div>
+            ) : (
+              Object.entries(groupedChats).map(([group, groupChats]) =>
+                groupChats.length > 0 ? (
+                  <div key={group}>
+                    <div className="px-3 py-2 text-xs font-semibold uppercase text-neutral-500 dark:text-neutral-400">
+                      {group}
+                    </div>
+                    <div className="space-y-1">
+                      {groupChats.map((chat) => (
+                        <div key={chat.id} className="group relative">
+                          {renameId === chat.id ? (
+                            // Rename Mode
+                            <div className="flex items-center gap-2 rounded-lg bg-blue-50 p-2 dark:bg-blue-900/20">
+                              <Input
+                                autoFocus
+                                value={renamingTitle}
+                                onChange={(e) => setRenamingTitle(e.target.value)}
+                                className="h-7 border-0 bg-white text-sm dark:bg-neutral-800"
+                                maxLength={50}
+                              />
+                              <Button
+                                size="icon"
+                                variant="ghost"
+                                className="h-6 w-6"
+                                onClick={() => {
+                                  // In production, you'd call an API to update the title
+                                  setRenameId(null);
+                                }}
+                              >
+                                <Check className="h-3 w-3 text-green-600" />
+                              </Button>
+                              <Button
+                                size="icon"
+                                variant="ghost"
+                                className="h-6 w-6"
+                                onClick={() => setRenameId(null)}
+                              >
+                                <X className="h-3 w-3 text-neutral-400" />
+                              </Button>
+                            </div>
+                          ) : (
+                            // Normal Mode
+                            <div className="flex items-center gap-1">
+                              <button
+                                onClick={() => onSelectChat(chat.id)}
+                                className={`flex-1 truncate rounded-lg px-3 py-2.5 text-left text-sm transition-all duration-150 ${
+                                  selectedChatId === chat.id
+                                    ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-md"
+                                    : "text-neutral-700 hover:bg-neutral-200/50 dark:text-neutral-300 dark:hover:bg-neutral-800/50"
+                                }`}
+                              >
+                                <span className="line-clamp-1">
+                                  {chat.title || "Untitled Chat"}
+                                </span>
+                              </button>
+
+                              {/* Hover Actions */}
+                              <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                  <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-8 w-8 opacity-0 transition-opacity group-hover:opacity-100"
+                                  >
+                                    <MoreVertical className="h-4 w-4" />
+                                    <span className="sr-only">Options</span>
+                                  </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end" className="w-48">
+                                  <DropdownMenuItem
+                                    onClick={() => toggleFavorite(chat.id)}
+                                    className="cursor-pointer"
+                                  >
+                                    <Star
+                                      className={`mr-2 h-4 w-4 ${
+                                        favorites.has(chat.id)
+                                          ? "fill-yellow-500 text-yellow-500"
+                                          : ""
+                                      }`}
+                                    />
+                                    {favorites.has(chat.id) ? "Unstar" : "Star Chat"}
+                                  </DropdownMenuItem>
+                                  <DropdownMenuItem
+                                    onClick={() => startRename(chat)}
+                                    className="cursor-pointer"
+                                  >
+                                    <Edit2 className="mr-2 h-4 w-4" />
+                                    Rename
+                                  </DropdownMenuItem>
+                                  <Separator />
+                                  <DropdownMenuItem
+                                    onClick={() => setDeleteConfirm(chat.id)}
+                                    className="cursor-pointer text-red-600 dark:text-red-400"
+                                  >
+                                    <Trash2 className="mr-2 h-4 w-4" />
+                                    Delete
+                                  </DropdownMenuItem>
+                                </DropdownMenuContent>
+                              </DropdownMenu>
+                            </div>
+                          )}
+
+                          {/* Timestamp on Hover */}
+                          {selectedChatId === chat.id && !renameId && (
+                            <div className="px-3 text-xs text-neutral-400 dark:text-neutral-500">
+                              {new Date(chat.created_at).toLocaleDateString()}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : null
+              )
+            )}
+          </div>
+        </ScrollArea>
+      </div>
+
+      {/* Delete Confirmation Dialog */}
+      <Dialog open={deleteConfirm !== null} onOpenChange={(open) => !open && setDeleteConfirm(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Delete Chat</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to delete this chat? This action cannot be undone.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="gap-2 sm:gap-0">
+            <Button
+              variant="outline"
+              onClick={() => setDeleteConfirm(null)}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={() => deleteConfirm && handleDelete(deleteConfirm)}
+            >
+              Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }

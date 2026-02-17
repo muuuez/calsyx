@@ -1,24 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  typescript: {
-    strict: true,
-  },
   // Production optimizations
-  swcMinify: true,
-  compress: true,
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
   // Image optimization
   images: {
     unoptimized: true, // For Vercel edge compatibility
-  },
-  // API route configuration
-  api: {
-    bodyParser: {
-      sizeLimit: "1mb",
-    },
-    responseLimit: "4mb",
   },
   // Headers for security
   async headers() {
@@ -33,18 +21,6 @@ const nextConfig: NextConfig = {
         ],
       },
     ];
-  },
-  // Redirects for old routes (if needed)
-  async redirects() {
-    return [];
-  },
-  // Rewrites for API routes
-  async rewrites() {
-    return {
-      beforeFiles: [],
-      afterFiles: [],
-      fallback: [],
-    };
   },
 };
 

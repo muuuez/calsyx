@@ -2,9 +2,13 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import AppLayout from "@/components/layouts/AppLayout";
 import ChatInput from "@/components/ChatInput";
 import ChatContainer from "@/components/ChatContainer";
 import ChatList from "@/components/ChatList";
+import { AlertCircle, Download, Settings, Share2, BarChart3, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 interface Message {
   id: string;
@@ -282,69 +286,149 @@ export default function ChatPage(): React.ReactElement {
   );
 
   return (
-    <div className="flex h-screen bg-white">
-      {/* Mobile menu toggle */}
-      <div className="hidden sm:hidden">
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="fixed bottom-4 right-4 z-50 rounded-full bg-blue-600 p-3 text-white"
-        >
-          ☰
-        </button>
-      </div>
-
-      {/* Sidebar */}
-      <div
-        className={`${
-          isMobileMenuOpen ? "fixed inset-0 z-40" : "hidden sm:flex"
-        } sm:flex w-full sm:w-64 flex-col border-r border-gray-200 bg-gray-50`}
-        onClick={() => setIsMobileMenuOpen(false)}
-      >
-        <div onClick={(e) => e.stopPropagation()}>
-          <ChatList
-            chats={chats}
-            selectedChatId={selectedChatId}
-            onSelectChat={(id) => {
-              setSelectedChatId(id);
-              setIsMobileMenuOpen(false);
-            }}
-            onNewChat={handleNewChat}
-            onDeleteChat={handleDeleteChat}
-          />
-        </div>
-      </div>
-
-      {/* Main chat area */}
-      <div className="flex flex-1 flex-col">
-        {error && (
-          <div className="border-b border-red-200 bg-red-50 px-4 py-2 text-sm text-red-700">
-            {error}
+    <AppLayout
+      sidebar={
+        <ChatList
+          chats={chats}
+          selectedChatId={selectedChatId}
+          onSelectChat={(id) => {
+            setSelectedChatId(id);
+          }}
+          onNewChat={handleNewChat}
+          onDeleteChat={handleDeleteChat}
+        />
+      }
+    >
+      {/* Error Banner */}
+      {error && (
+        <div className="border-b border-red-200 bg-red-50 px-4 py-3 shadow-sm dark:border-red-900/50 dark:bg-red-950/50">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <AlertCircle className="h-5 w-5 flex-shrink-0 text-red-600 dark:text-red-400" />
+              <span className="text-sm font-medium text-red-900 dark:text-red-200">
+                {error}
+              </span>
+            </div>
             <button
               onClick={() => setError(null)}
-              className="ml-2 font-medium hover:underline"
+              className="text-red-700 hover:text-red-900 dark:text-red-300 dark:hover:text-red-200"
             >
-              Dismiss
+              <X className="h-4 w-4" />
             </button>
           </div>
-        )}
+        </div>
+      )}
 
+      {/* Chat Area - Flex Container */}
+      <div className="flex flex-1 flex-col overflow-hidden">
         {selectedChatId ? (
           <>
+            {/* Chat Header */}
+            <div className="shrink-0 border-b border-neutral-200 bg-white px-6 py-4 shadow-sm dark:border-neutral-800 dark:bg-neutral-950">
+              <div className="flex items-center justify-between gap-4">
+                <div className="min-w-0 flex-1">
+                  <h2 className="truncate text-lg font-semibold text-neutral-900 dark:text-neutral-50">
+                    {chats.find((c) => c.id === selectedChatId)?.title || "Chat"}
+                  </h2>
+                  <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                    {messages.length} messages
+                  </p>
+                </div>
+
+                {/* Header Actions */}
+                <div className="flex items-center gap-2">
+                  {/* Export */}
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    title="Export chat"
+                    onClick={() => {
+                      // Placeholder for export functionality
+                      const content = messages
+                        .map((m) => `${m.role}: ${m.content}`)
+                        .join("\n\n");
+                      const element = document.createElement("a");
+                      element.setAttribute(
+                        "href",
+                        "data:text/plain;charset=utf-8," +
+                          encodeURIComponent(content)
+                      );
+                      element.setAttribute("download", "chat.txt");
+                      element.style.display = "none";
+                      document.body.appendChild(element);
+                      element.click();
+                      document.body.removeChild(element);
+                    }}
+                  >
+                    <Download className="h-4 w-4" />
+                    <span className="sr-only">Export</span>
+                  </Button>
+
+                  {/* Share */}
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    title="Share chat"
+                  >
+                    <Share2 className="h-4 w-4" />
+                    <span className="sr-only">Share</span>
+                  </Button>
+
+                  {/* Settings */}
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    title="Chat settings"
+                  >
+                    <Settings className="h-4 w-4" />
+                    <span className="sr-only">Settings</span>
+                  </Button>
+
+                  {/* Stats */}
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    title="Chat statistics"
+                  >
+                    <BarChart3 className="h-4 w-4" />
+                    <span className="sr-only">Stats</span>
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            {/* Messages Container - Scrollable */}
             <ChatContainer messages={messages} isLoading={isLoading} />
+
+            {/* Input Container - Sticky Bottom */}
             <ChatInput onSend={handleSendMessage} isLoading={isLoading} />
           </>
         ) : (
-          <div className="flex flex-1 items-center justify-center">
-            <button
-              onClick={handleNewChat}
-              disabled={isLoading}
-              className="rounded bg-blue-600 px-6 py-2 font-medium text-white hover:bg-blue-700 disabled:bg-gray-400"
-            >
-              Start a new chat
-            </button>
+          <div className="flex flex-1 items-center justify-center bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-950 dark:to-neutral-900">
+            <div className="space-y-6 text-center">
+              <div className="inline-block">
+                <div className="text-6xl">💬</div>
+              </div>
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold text-neutral-900 dark:text-neutral-50">
+                  No conversation yet
+                </h2>
+                <p className="text-neutral-600 dark:text-neutral-400">
+                  Start a new chat or select one from your history
+                </p>
+              </div>
+              <Button
+                onClick={handleNewChat}
+                disabled={isLoading}
+                size="lg"
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 shadow-lg hover:shadow-xl dark:from-blue-700 dark:to-indigo-700"
+              >
+                Start New Chat
+              </Button>
+            </div>
           </div>
         )}
       </div>
-    </div>
+    </AppLayout>
   );
 }

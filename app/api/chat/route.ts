@@ -109,8 +109,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     // Generate AI response with timeout
     const aiResult = await generateChatResponse(historyResult.data);
     if (!aiResult.success || !aiResult.data) {
+      console.error("AI generation error:", aiResult.error);
       return NextResponse.json(
-        { error: aiResult.error || "Failed to generate response. Please try again." },
+        { error: "Failed to generate response. Please try again." },
         { status: 500 }
       );
     }
@@ -145,7 +146,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     );
   } catch (err) {
     console.error("Chat API error:", err);
-    const message = err instanceof Error ? err.message : "Internal server error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
