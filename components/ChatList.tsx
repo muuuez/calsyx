@@ -176,12 +176,12 @@ export default function ChatList({
                         <div key={chat.id} className="group relative">
                           {renameId === chat.id ? (
                             // Rename Mode
-                            <div className="flex items-center gap-2 rounded-lg border border-blue-600 bg-white p-2 dark:bg-neutral-900">
+                            <div className="flex items-center gap-2 rounded-lg border border-blue-600 dark:border-blue-500 bg-white dark:bg-neutral-900 p-2">
                               <Input
                                 autoFocus
                                 value={renamingTitle}
                                 onChange={(e) => setRenamingTitle(e.target.value)}
-                                className="h-7 border-0 bg-white text-sm dark:bg-neutral-800"
+                                className="h-7 border-0 bg-white dark:bg-neutral-900 text-sm"
                                 maxLength={50}
                               />
                               <Button

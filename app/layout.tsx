@@ -13,7 +13,7 @@ export default function RootLayout({
 }>): React.ReactElement {
   return (
     <html lang="en">
-      <body className="bg-white font-sans">{children}</body>
+      <body className="bg-white font-sans text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50">{children}</body>
     </html>
   );
 }

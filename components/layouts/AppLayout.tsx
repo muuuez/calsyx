@@ -84,7 +84,7 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
                 {isDark ? (
                   <Sun className="h-5 w-5 text-yellow-500" />
                 ) : (
-                  <Moon className="h-5 w-5 text-neutral-600" />
+                  <Moon className="h-5 w-5 text-neutral-600 dark:text-neutral-400" />
                 )}
                 <span className="sr-only">Toggle theme</span>
               </Button>
