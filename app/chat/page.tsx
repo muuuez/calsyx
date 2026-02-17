@@ -301,19 +301,19 @@ export default function ChatPage(): React.ReactElement {
     >
       {/* Error Banner - Inside Flex Column */}
       {error && (
-        <div className="flex-shrink-0 border-b border-red-200 bg-red-50 px-4 py-3 dark:border-red-900/50 dark:bg-red-950/50">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <AlertCircle className="h-5 w-5 flex-shrink-0 text-red-600 dark:text-red-400" />
-              <span className="text-sm font-medium text-red-900 dark:text-red-200">
+        <div className="flex-shrink-0 border-b border-red-300/50 bg-red-50/50 px-4 py-3 dark:border-red-900/30 dark:bg-red-950/30">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <AlertCircle className="h-4 w-4 flex-shrink-0 text-red-600 dark:text-red-400 mt-0.5" />
+              <span className="text-sm text-red-900 dark:text-red-200">
                 {error}
               </span>
             </div>
             <button
               onClick={() => setError(null)}
-              className="text-red-700 hover:text-red-900 dark:text-red-300 dark:hover:text-red-200"
+              className="text-red-700 hover:text-red-900 dark:text-red-300 dark:hover:text-red-200 transition-colors duration-150 shrink-0"
             >
-              <X className="h-4 w-4" />
+              <X className="h-3.5 w-3.5" />
             </button>
           </div>
         </div>
