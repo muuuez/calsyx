@@ -51,7 +51,7 @@ function MessageBubble({ msg }: { msg: Message }) {
         return (
           <pre
             key={idx}
-            className="my-2 overflow-x-auto rounded-lg bg-neutral-900 p-4 text-neutral-50 text-xs leading-relaxed dark:bg-neutral-800"
+            className="my-2 overflow-x-auto rounded-lg bg-neutral-950 p-3 text-neutral-50 text-xs leading-relaxed border border-neutral-800/50 dark:bg-neutral-900 dark:border-neutral-700/50"
           >
             <code>{part.trim()}</code>
           </pre>
@@ -79,23 +79,23 @@ function MessageBubble({ msg }: { msg: Message }) {
           <Button
             variant="ghost"
             size="icon"
-            className="h-8 w-8 shrink-0 opacity-0 transition-opacity group-hover:opacity-100"
+            className="h-7 w-7 shrink-0 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
             onClick={handleCopy}
             title="Copy message"
           >
             {copiedId === msg.id ? (
-              <Check className="h-4 w-4 text-green-600" />
+              <Check className="h-3.5 w-3.5 text-green-600" />
             ) : (
-              <Copy className="h-4 w-4" />
+              <Copy className="h-3.5 w-3.5 text-neutral-600 dark:text-neutral-400" />
             )}
           </Button>
         )}
 
         <Card
-          className={`rounded-lg px-5 py-3 transition-all duration-200 ${
+          className={`rounded-lg px-4 py-2.5 transition-all duration-150 ${
             msg.role === "user"
-              ? "bg-blue-600 text-white dark:bg-blue-700"
-              : "border border-neutral-200 bg-white text-neutral-900 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-50"
+              ? "bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800"
+              : "border border-neutral-300/50 bg-white text-neutral-900 hover:border-neutral-300 dark:border-neutral-700/50 dark:bg-neutral-900 dark:text-neutral-50 dark:hover:border-neutral-700"
           }`}
         >
           <div className="space-y-2">
@@ -118,14 +118,14 @@ function MessageBubble({ msg }: { msg: Message }) {
           <Button
             variant="ghost"
             size="icon"
-            className="h-8 w-8 shrink-0"
+            className="h-7 w-7 shrink-0 opacity-70 hover:opacity-100 transition-opacity duration-150"
             onClick={handleCopy}
             title="Copy message"
           >
             {copiedId === msg.id ? (
-              <Check className="h-4 w-4 text-green-400" />
+              <Check className="h-3.5 w-3.5 text-green-400" />
             ) : (
-              <Copy className="h-4 w-4 text-white opacity-70" />
+              <Copy className="h-3.5 w-3.5 text-white" />
             )}
           </Button>
         )}
@@ -153,13 +153,13 @@ function ChatContainerComponent({
 
   return (
     <ScrollArea className="flex-1 bg-neutral-50 dark:bg-neutral-950">
-      <div className="mx-auto max-w-3xl space-y-4 p-6">
+      <div className="mx-auto max-w-3xl space-y-3 p-6">
         {/* Empty State */}
         {formattedMessages.length === 0 && !isLoading && (
-          <div className="flex h-96 items-center justify-center rounded-lg border-2 border-dashed border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900">
+          <div className="flex h-96 items-center justify-center rounded-lg border border-dashed border-neutral-300/50 bg-neutral-50/50 dark:border-neutral-700/50 dark:bg-neutral-900/50">
             <div className="text-center">
               <div className="mb-3 text-4xl">💬</div>
-              <p className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+              <p className="text-base font-semibold text-neutral-900 dark:text-neutral-100">
                 Start a conversation
               </p>
               <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
@@ -176,8 +176,8 @@ function ChatContainerComponent({
 
         {/* Loading State */}
         {isLoading && (
-          <div className="flex justify-start">
-            <Card className="rounded-lg border border-neutral-200 bg-white px-5 py-3 dark:border-neutral-700 dark:bg-neutral-900">
+          <div className="flex justify-start animate-in slide-in-from-bottom-2">
+            <Card className="rounded-lg border border-neutral-300/50 bg-white px-4 py-2.5 dark:border-neutral-700/50 dark:bg-neutral-900">
               <div className="flex gap-2">
                 <Skeleton className="h-2 w-2 animate-pulse rounded-full" />
                 <Skeleton className="h-2 w-2 animate-pulse rounded-full" style={{ animationDelay: "100ms" }} />
