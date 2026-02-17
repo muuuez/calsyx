@@ -110,7 +110,7 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
       <div className="mx-auto max-w-3xl px-6 py-4">
         <div className="space-y-4">
             {/* Textarea + Actions Row */}
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               <Textarea
                 ref={textareaRef}
                 value={message}
@@ -119,7 +119,7 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
                 placeholder="Type your message... (Shift+Enter for new line)"
                 disabled={isLoading}
                 rows={1}
-                className="resize-none border-0 bg-neutral-50 p-3 text-sm focus-visible:ring-2 focus-visible:ring-blue-500 dark:bg-neutral-800 dark:text-neutral-50"
+                className="resize-none border-0 bg-neutral-50 p-4 text-sm focus-visible:ring-2 focus-visible:ring-blue-500 dark:bg-neutral-800 dark:text-neutral-50"
               />
 
               {/* Action Buttons */}
@@ -143,7 +143,7 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
 
             {/* Bottom Row: Tools + Counter */}
             <div className="flex items-center justify-between gap-2">
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-2">
                 {/* Emoji Picker */}
                 <Button
                   type="button"

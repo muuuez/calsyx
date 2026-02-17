@@ -120,7 +120,7 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
 
         {/* Mobile Floating Action Button */}
         <Button
-          className="fixed bottom-6 right-6 hidden gap-2 rounded-full bg-blue-600 shadow-sm hover:shadow-md max-sm:flex sm:hidden"
+          className="fixed bottom-6 right-6 hidden gap-2 rounded-full bg-blue-600 max-sm:flex sm:hidden"
           onClick={() => {
             // This would trigger new chat from the page component
             const event = new CustomEvent("createNewChat");
@@ -141,7 +141,7 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
               Quick commands to navigate the app
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-3">
+          <div className="space-y-4">
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
                 <span className="font-medium text-neutral-900 dark:text-neutral-50">

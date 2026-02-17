@@ -303,13 +303,7 @@ input[type="radio"] {
 }
 
 /* Shadow Utilities */
-.shadow-sm-md {
-  @apply shadow-sm dark:shadow-none;
-}
-
-.shadow-lg-xl {
-  @apply shadow-lg dark:shadow-md;
-}
+/* Removed unused shadow utilities - only shadow-sm allowed */
 
 /* Responsive Container */
 .container-max {

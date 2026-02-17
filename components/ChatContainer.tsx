@@ -51,7 +51,7 @@ function MessageBubble({ msg }: { msg: Message }) {
         return (
           <pre
             key={idx}
-            className="my-2 overflow-x-auto rounded-lg bg-neutral-900 p-3 text-neutral-50 text-xs leading-relaxed dark:bg-neutral-800"
+            className="my-2 overflow-x-auto rounded-lg bg-neutral-900 p-4 text-neutral-50 text-xs leading-relaxed dark:bg-neutral-800"
           >
             <code>{part.trim()}</code>
           </pre>

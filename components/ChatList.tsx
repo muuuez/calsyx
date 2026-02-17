@@ -176,7 +176,7 @@ export default function ChatList({
                         <div key={chat.id} className="group relative">
                           {renameId === chat.id ? (
                             // Rename Mode
-                            <div className="flex items-center gap-2 rounded-lg bg-blue-50 p-2 dark:bg-blue-900/20">
+                            <div className="flex items-center gap-2 rounded-lg border border-blue-600 bg-white p-2 dark:bg-neutral-900">
                               <Input
                                 autoFocus
                                 value={renamingTitle}
@@ -206,7 +206,7 @@ export default function ChatList({
                             </div>
                           ) : (
                             // Normal Mode
-                            <div className="flex items-center gap-1">
+                            <div className="flex items-center gap-2">
                               <button
                                 onClick={() => onSelectChat(chat.id)}
                                 className={`flex-1 truncate rounded-lg px-3 py-2.5 text-left text-sm transition-all duration-150 ${

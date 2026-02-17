@@ -302,8 +302,8 @@ export default function ChatPage(): React.ReactElement {
       {/* Error Banner */}
       {error && (
         <div className="border-b border-red-200 bg-red-50 px-4 py-3 dark:border-red-900/50 dark:bg-red-950/50">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
               <AlertCircle className="h-5 w-5 flex-shrink-0 text-red-600 dark:text-red-400" />
               <span className="text-sm font-medium text-red-900 dark:text-red-200">
                 {error}
@@ -405,7 +405,7 @@ export default function ChatPage(): React.ReactElement {
           </>
         ) : (
           <div className="flex flex-1 items-center justify-center">
-            <div className="space-y-6 text-center">
+            <div className="space-y-4 text-center">
               <div className="inline-block">
                 <div className="text-6xl">💬</div>
               </div>

@@ -109,10 +109,10 @@ export default function RegisterPage() {
       title="Create your account"
       description="Join to start using AI Chat"
     >
-      <CardContent className="space-y-6 p-6">
+      <CardContent className="space-y-4 p-6">
         {/* Error Alert */}
         {error && (
-          <div className="flex gap-3 rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-900/50 dark:bg-red-950/50">
+          <div className="flex gap-4 rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-900/50 dark:bg-red-950/50">
             <AlertCircle className="h-5 w-5 flex-shrink-0 text-red-600 dark:text-red-400" />
             <div className="flex-1">
               <p className="text-sm font-medium text-red-900 dark:text-red-200">
@@ -209,9 +209,9 @@ export default function RegisterPage() {
                 </div>
 
                 {/* Requirements Checklist */}
-                <div className="grid grid-cols-2 gap-2 text-xs">
+                <div className="grid grid-cols-2 gap-4 text-xs">
                   <div
-                    className={`flex items-center gap-1.5 ${
+                    className={`flex items-center gap-2 ${
                       passwordReqs.length
                         ? "text-green-600 dark:text-green-400"
                         : "text-neutral-500 dark:text-neutral-400"
@@ -225,7 +225,7 @@ export default function RegisterPage() {
                     <span>8+ characters</span>
                   </div>
                   <div
-                    className={`flex items-center gap-1.5 ${
+                    className={`flex items-center gap-2 ${
                       passwordReqs.hasUpper
                         ? "text-green-600 dark:text-green-400"
                         : "text-neutral-500 dark:text-neutral-400"
@@ -239,7 +239,7 @@ export default function RegisterPage() {
                     <span>Uppercase</span>
                   </div>
                   <div
-                    className={`flex items-center gap-1.5 ${
+                    className={`flex items-center gap-2 ${
                       passwordReqs.hasLower
                         ? "text-green-600 dark:text-green-400"
                         : "text-neutral-500 dark:text-neutral-400"
@@ -253,7 +253,7 @@ export default function RegisterPage() {
                     <span>Lowercase</span>
                   </div>
                   <div
-                    className={`flex items-center gap-1.5 ${
+                    className={`flex items-center gap-2 ${
                       passwordReqs.hasNumber
                         ? "text-green-600 dark:text-green-400"
                         : "text-neutral-500 dark:text-neutral-400"
@@ -345,7 +345,7 @@ export default function RegisterPage() {
           <Button
             type="submit"
             disabled={isLoading || !agreed}
-            className="h-11 w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-base font-medium shadow-md hover:shadow-lg dark:from-blue-700 dark:to-indigo-700 disabled:opacity-50"
+            className="h-11 w-full bg-blue-600 text-base font-medium dark:bg-blue-700 disabled:opacity-50"
           >
             {isLoading ? "Creating account..." : "Create Account"}
           </Button>
