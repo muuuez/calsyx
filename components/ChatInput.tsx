@@ -106,11 +106,11 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
   };
 
   return (
-    <div className="flex-shrink-0 border-t border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
-      <div className="mx-auto max-w-3xl px-6 py-4">
-        <div className="space-y-4">
+    <div className="flex-shrink-0 border-t border-neutral-200/50 dark:border-neutral-800/50 bg-white dark:bg-neutral-950">
+      <div className="mx-auto max-w-3xl px-6 py-3">
+        <div className="space-y-3">
             {/* Textarea + Actions Row */}
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               <Textarea
                 ref={textareaRef}
                 value={message}
@@ -119,17 +119,17 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
                 placeholder="Type your message... (Shift+Enter for new line)"
                 disabled={isLoading}
                 rows={1}
-                className="resize-none border-0 bg-neutral-50 p-4 text-sm focus-visible:ring-2 focus-visible:ring-blue-500 dark:bg-neutral-800 dark:text-neutral-50"
+                className="resize-none border border-neutral-300 bg-white px-3 py-2 text-sm focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700 dark:bg-neutral-950 dark:text-neutral-50"
               />
 
               {/* Action Buttons */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-1">
                 {/* Send Button */}
                 <Button
                   onClick={handleSend}
                   disabled={!message.trim() || isLoading}
                   size="icon"
-                  className="h-10 w-10 shrink-0 bg-blue-600 dark:bg-blue-700"
+                  className="h-9 w-9 shrink-0 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800"
                 >
                   {isLoading ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -143,17 +143,17 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
 
             {/* Bottom Row: Tools + Counter */}
             <div className="flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
                 {/* Emoji Picker */}
                 <Button
                   type="button"
                   variant="ghost"
                   size="sm"
-                  className="h-8 w-8 p-0 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                  className="h-7 w-7 p-0 hover:bg-neutral-100 dark:hover:bg-neutral-800/50"
                   title="Add emoji"
                   onClick={() => addEmoji("😊")}
                 >
-                  <Smile className="h-4 w-4" />
+                  <Smile className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                 </Button>
 
                 {/* File Upload */}
@@ -161,11 +161,11 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
                   type="button"
                   variant="ghost"
                   size="sm"
-                  className="h-8 w-8 p-0 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                  className="h-7 w-7 p-0 hover:bg-neutral-100 dark:hover:bg-neutral-800/50"
                   title="Attach file"
                   onClick={() => fileInputRef.current?.click()}
                 >
-                  <Paperclip className="h-4 w-4" />
+                  <Paperclip className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                 </Button>
                 <input
                   ref={fileInputRef}
@@ -180,10 +180,10 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
                   type="button"
                   variant="ghost"
                   size="sm"
-                  className={`h-8 w-8 p-0 ${
+                  className={`h-7 w-7 p-0 ${
                     isRecording
-                      ? "bg-red-100 text-red-600 hover:bg-red-200 dark:bg-red-900 dark:text-red-400"
-                      : "hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                      ? "bg-red-100/50 text-red-600 hover:bg-red-100 dark:bg-red-900/30 dark:text-red-400"
+                      : "hover:bg-neutral-100 dark:hover:bg-neutral-800/50 text-neutral-600 dark:text-neutral-400"
                   }`}
                   title={isRecording ? "Stop recording" : "Record voice"}
                   onClick={isRecording ? stopRecording : startRecording}
@@ -193,8 +193,8 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
               </div>
 
               {/* Character Counter */}
-              <div className="text-right text-xs font-medium text-neutral-500 dark:text-neutral-400">
-                <span className={message.length > 1800 ? "text-orange-600 dark:text-orange-400" : ""}>
+              <div className="text-right text-xs text-neutral-500 dark:text-neutral-400">
+                <span className={message.length > 1800 ? "text-orange-600 dark:text-orange-400 font-medium" : ""}>
                   {message.length}
                 </span>
                 <span className="text-neutral-400">/2000</span>
@@ -203,8 +203,8 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
 
             {/* Keyboard Hint */}
             <div className="text-xs text-neutral-500 dark:text-neutral-400">
-              Press <kbd className="rounded border border-neutral-300 bg-neutral-100 px-1.5 py-0.5 font-mono text-xs dark:border-neutral-700 dark:bg-neutral-800">Shift</kbd>{" "}
-              + <kbd className="rounded border border-neutral-300 bg-neutral-100 px-1.5 py-0.5 font-mono text-xs dark:border-neutral-700 dark:bg-neutral-800">Enter</kbd>{" "}
+              Press <kbd className="rounded border border-neutral-300/50 bg-neutral-50 px-1 py-0.5 font-mono text-xs dark:border-neutral-700/50 dark:bg-neutral-900/50">Shift</kbd>{" "}
+              + <kbd className="rounded border border-neutral-300/50 bg-neutral-50 px-1 py-0.5 font-mono text-xs dark:border-neutral-700/50 dark:bg-neutral-900/50">Enter</kbd>{" "}
               for new line
             </div>
           </div>
