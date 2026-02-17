@@ -159,7 +159,7 @@ function ChatContainerComponent({
           <div className="flex h-96 items-center justify-center rounded-lg border-2 border-dashed border-neutral-200 bg-neutral-100 dark:border-neutral-800 dark:bg-neutral-900">
             <div className="text-center">
               <div className="mb-3 text-4xl">💬</div>
-              <p className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">
+              <p className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
                 Start a conversation
               </p>
               <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">

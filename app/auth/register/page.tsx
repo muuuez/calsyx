@@ -128,7 +128,7 @@ export default function RegisterPage() {
           <div className="space-y-2">
             <label
               htmlFor="email"
-              className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300"
+              className="block text-xs font-semibold uppercase text-neutral-600 dark:text-neutral-400"
             >
               Email Address
             </label>
@@ -161,7 +161,7 @@ export default function RegisterPage() {
           <div className="space-y-2">
             <label
               htmlFor="password"
-              className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300"
+              className="block text-xs font-semibold uppercase text-neutral-600 dark:text-neutral-400"
             >
               Password
             </label>
@@ -275,7 +275,7 @@ export default function RegisterPage() {
           <div className="space-y-2">
             <label
               htmlFor="confirmPassword"
-              className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300"
+              className="block text-xs font-semibold uppercase text-neutral-600 dark:text-neutral-400"
             >
               Confirm Password
             </label>
@@ -345,7 +345,7 @@ export default function RegisterPage() {
           <Button
             type="submit"
             disabled={isLoading || !agreed}
-            className="h-11 w-full bg-blue-600 text-base font-medium dark:bg-blue-700 disabled:opacity-50"
+            className="h-11 w-full bg-blue-600 hover:bg-blue-700 text-base font-medium text-white dark:bg-blue-700 dark:hover:bg-blue-800 disabled:opacity-50"
           >
             {isLoading ? "Creating account..." : "Create Account"}
           </Button>

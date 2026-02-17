@@ -74,7 +74,7 @@ export default function LoginPage() {
           <div className="space-y-2">
             <label
               htmlFor="email"
-              className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300"
+              className="block text-xs font-semibold uppercase text-neutral-600 dark:text-neutral-400"
             >
               Email Address
             </label>
@@ -95,7 +95,7 @@ export default function LoginPage() {
             <div className="flex items-center justify-between">
               <label
                 htmlFor="password"
-                className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300"
+                className="block text-xs font-semibold uppercase text-neutral-600 dark:text-neutral-400"
               >
                 Password
               </label>
@@ -155,7 +155,7 @@ export default function LoginPage() {
           <Button
             type="submit"
             disabled={isLoading}
-            className="h-11 w-full bg-blue-600 text-base font-medium dark:bg-blue-700"
+            className="h-11 w-full bg-blue-600 hover:bg-blue-700 text-base font-medium text-white dark:bg-blue-700 dark:hover:bg-blue-800"
           >
             {isLoading ? "Signing in..." : "Sign In"}
           </Button>

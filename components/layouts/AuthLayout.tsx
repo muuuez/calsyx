@@ -23,7 +23,7 @@ export default function AuthLayout({
               <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-600">
                 <span className="text-xl font-bold text-white">AI</span>
               </div>
-              <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-50">
+              <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50">
                 {title}
               </h1>
               {description && (

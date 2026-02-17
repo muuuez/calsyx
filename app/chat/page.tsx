@@ -326,7 +326,7 @@ export default function ChatPage(): React.ReactElement {
           <div className="flex-shrink-0 border-b border-neutral-200 bg-white px-6 py-4 dark:border-neutral-800 dark:bg-neutral-950">
             <div className="flex items-center justify-between gap-4">
               <div className="min-w-0 flex-1">
-                <h2 className="truncate text-lg font-semibold text-neutral-900 dark:text-neutral-50">
+                <h2 className="truncate text-lg font-semibold text-neutral-900 dark:text-neutral-100">
                   {chats.find((c) => c.id === selectedChatId)?.title || "Chat"}
                 </h2>
                 <p className="text-xs text-neutral-500 dark:text-neutral-400">
@@ -409,10 +409,10 @@ export default function ChatPage(): React.ReactElement {
               <div className="text-6xl">💬</div>
             </div>
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold text-neutral-900 dark:text-neutral-50">
+              <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50">
                 No conversation yet
               </h2>
-              <p className="text-neutral-600 dark:text-neutral-400">
+              <p className="text-sm text-neutral-600 dark:text-neutral-400">
                 Start a new chat or select one from your history
               </p>
             </div>
@@ -420,7 +420,7 @@ export default function ChatPage(): React.ReactElement {
               onClick={handleNewChat}
               disabled={isLoading}
               size="lg"
-              className="bg-blue-600 dark:bg-blue-700"
+                className="bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-700 dark:hover:bg-blue-800"
             >
               Start New Chat
             </Button>

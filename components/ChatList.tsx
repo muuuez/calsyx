@@ -211,7 +211,7 @@ export default function ChatList({
                                 onClick={() => onSelectChat(chat.id)}
                                 className={`flex-1 truncate rounded-lg px-3 py-2.5 text-left text-sm transition-all duration-150 ${
                                   selectedChatId === chat.id
-                                    ? "bg-blue-600 text-white"
+                                    ? "bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-50"
                                     : "text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800"
                                 }`}
                               >
