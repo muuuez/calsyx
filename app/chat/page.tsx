@@ -299,9 +299,9 @@ export default function ChatPage(): React.ReactElement {
         />
       }
     >
-      {/* Error Banner */}
+      {/* Error Banner - Inside Flex Column */}
       {error && (
-        <div className="border-b border-red-200 bg-red-50 px-4 py-3 dark:border-red-900/50 dark:bg-red-950/50">
+        <div className="flex-shrink-0 border-b border-red-200 bg-red-50 px-4 py-3 dark:border-red-900/50 dark:bg-red-950/50">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <AlertCircle className="h-5 w-5 flex-shrink-0 text-red-600 dark:text-red-400" />
@@ -319,116 +319,114 @@ export default function ChatPage(): React.ReactElement {
         </div>
       )}
 
-      {/* Chat Area - Flex Container */}
-      <div className="flex flex-1 flex-col overflow-hidden">
-        {selectedChatId ? (
-          <>
-            {/* Chat Header */}
-            <div className="shrink-0 border-b border-neutral-200 bg-white px-6 py-4 dark:border-neutral-800 dark:bg-neutral-950">
-              <div className="flex items-center justify-between gap-4">
-                <div className="min-w-0 flex-1">
-                  <h2 className="truncate text-lg font-semibold text-neutral-900 dark:text-neutral-50">
-                    {chats.find((c) => c.id === selectedChatId)?.title || "Chat"}
-                  </h2>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400">
-                    {messages.length} messages
-                  </p>
-                </div>
-
-                {/* Header Actions */}
-                <div className="flex items-center gap-2">
-                  {/* Export */}
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    title="Export chat"
-                    onClick={() => {
-                      // Placeholder for export functionality
-                      const content = messages
-                        .map((m) => `${m.role}: ${m.content}`)
-                        .join("\n\n");
-                      const element = document.createElement("a");
-                      element.setAttribute(
-                        "href",
-                        "data:text/plain;charset=utf-8," +
-                          encodeURIComponent(content)
-                      );
-                      element.setAttribute("download", "chat.txt");
-                      element.style.display = "none";
-                      document.body.appendChild(element);
-                      element.click();
-                      document.body.removeChild(element);
-                    }}
-                  >
-                    <Download className="h-4 w-4" />
-                    <span className="sr-only">Export</span>
-                  </Button>
-
-                  {/* Share */}
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    title="Share chat"
-                  >
-                    <Share2 className="h-4 w-4" />
-                    <span className="sr-only">Share</span>
-                  </Button>
-
-                  {/* Settings */}
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    title="Chat settings"
-                  >
-                    <Settings className="h-4 w-4" />
-                    <span className="sr-only">Settings</span>
-                  </Button>
-
-                  {/* Stats */}
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    title="Chat statistics"
-                  >
-                    <BarChart3 className="h-4 w-4" />
-                    <span className="sr-only">Stats</span>
-                  </Button>
-                </div>
-              </div>
-            </div>
-
-            {/* Messages Container - Scrollable */}
-            <ChatContainer messages={messages} isLoading={isLoading} />
-
-            {/* Input Container - Sticky Bottom */}
-            <ChatInput onSend={handleSendMessage} isLoading={isLoading} />
-          </>
-        ) : (
-          <div className="flex flex-1 items-center justify-center">
-            <div className="space-y-4 text-center">
-              <div className="inline-block">
-                <div className="text-6xl">💬</div>
-              </div>
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold text-neutral-900 dark:text-neutral-50">
-                  No conversation yet
+      {/* Chat Area */}
+      {selectedChatId ? (
+        <>
+          {/* Chat Header */}
+          <div className="flex-shrink-0 border-b border-neutral-200 bg-white px-6 py-4 dark:border-neutral-800 dark:bg-neutral-950">
+            <div className="flex items-center justify-between gap-4">
+              <div className="min-w-0 flex-1">
+                <h2 className="truncate text-lg font-semibold text-neutral-900 dark:text-neutral-50">
+                  {chats.find((c) => c.id === selectedChatId)?.title || "Chat"}
                 </h2>
-                <p className="text-neutral-600 dark:text-neutral-400">
-                  Start a new chat or select one from your history
+                <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                  {messages.length} messages
                 </p>
               </div>
-              <Button
-                onClick={handleNewChat}
-                disabled={isLoading}
-                size="lg"
-                className="bg-blue-600 dark:bg-blue-700"
-              >
-                Start New Chat
-              </Button>
+
+              {/* Header Actions */}
+              <div className="flex items-center gap-2">
+                {/* Export */}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  title="Export chat"
+                  onClick={() => {
+                    // Placeholder for export functionality
+                    const content = messages
+                      .map((m) => `${m.role}: ${m.content}`)
+                      .join("\n\n");
+                    const element = document.createElement("a");
+                    element.setAttribute(
+                      "href",
+                      "data:text/plain;charset=utf-8," +
+                        encodeURIComponent(content)
+                    );
+                    element.setAttribute("download", "chat.txt");
+                    element.style.display = "none";
+                    document.body.appendChild(element);
+                    element.click();
+                    document.body.removeChild(element);
+                  }}
+                >
+                  <Download className="h-4 w-4" />
+                  <span className="sr-only">Export</span>
+                </Button>
+
+                {/* Share */}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  title="Share chat"
+                >
+                  <Share2 className="h-4 w-4" />
+                  <span className="sr-only">Share</span>
+                </Button>
+
+                {/* Settings */}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  title="Chat settings"
+                >
+                  <Settings className="h-4 w-4" />
+                  <span className="sr-only">Settings</span>
+                </Button>
+
+                {/* Stats */}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  title="Chat statistics"
+                >
+                  <BarChart3 className="h-4 w-4" />
+                  <span className="sr-only">Stats</span>
+                </Button>
+              </div>
             </div>
           </div>
-        )}
-      </div>
+
+          {/* Messages Container - Scrollable */}
+          <ChatContainer messages={messages} isLoading={isLoading} />
+
+          {/* Input Container - Sticky Bottom */}
+          <ChatInput onSend={handleSendMessage} isLoading={isLoading} />
+        </>
+      ) : (
+        <div className="flex flex-1 items-center justify-center">
+          <div className="space-y-4 text-center">
+            <div className="inline-block">
+              <div className="text-6xl">💬</div>
+            </div>
+            <div className="space-y-2">
+              <h2 className="text-3xl font-bold text-neutral-900 dark:text-neutral-50">
+                No conversation yet
+              </h2>
+              <p className="text-neutral-600 dark:text-neutral-400">
+                Start a new chat or select one from your history
+              </p>
+            </div>
+            <Button
+              onClick={handleNewChat}
+              disabled={isLoading}
+              size="lg"
+              className="bg-blue-600 dark:bg-blue-700"
+            >
+              Start New Chat
+            </Button>
+          </div>
+        </div>
+      )}
     </AppLayout>
   );
 }

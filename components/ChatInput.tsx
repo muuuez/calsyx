@@ -106,7 +106,7 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
   };
 
   return (
-    <div className="border-t border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+    <div className="flex-shrink-0 border-t border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
       <div className="mx-auto max-w-3xl px-6 py-4">
         <div className="space-y-4">
             {/* Textarea + Actions Row */}
