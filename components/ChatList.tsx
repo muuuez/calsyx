@@ -124,9 +124,9 @@ export default function ChatList({
   return (
     <>
       {/* Sidebar */}
-      <div className="flex w-64 flex-col border-r border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+      <div className="flex w-64 flex-col border-r border-neutral-300/50 bg-white dark:border-neutral-700/50 dark:bg-neutral-950">
         {/* New Chat Button - Sticky Top */}
-        <div className="shrink-0 space-y-4 border-b border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-950">
+        <div className="shrink-0 space-y-3 border-b border-neutral-300/50 bg-white p-4 dark:border-neutral-700/50 dark:bg-neutral-950">
           <Button
             onClick={onNewChat}
             className="w-full gap-2 rounded-lg bg-blue-600 dark:bg-blue-700"
@@ -144,7 +144,7 @@ export default function ChatList({
               placeholder="Search chats..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="h-9 border border-neutral-200 bg-neutral-50 pl-8 text-sm focus-visible:ring-2 focus-visible:ring-blue-500 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-50"
+              className="h-8 border border-neutral-300/50 bg-white pl-8 text-sm focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700/50 dark:bg-neutral-900 dark:text-neutral-50"
             />
           </div>
         </div>
@@ -176,18 +176,18 @@ export default function ChatList({
                         <div key={chat.id} className="group relative">
                           {renameId === chat.id ? (
                             // Rename Mode
-                            <div className="flex items-center gap-2 rounded-lg border border-blue-600 dark:border-blue-500 bg-white dark:bg-neutral-900 p-2">
+                            <div className="flex items-center gap-1 rounded-lg border border-blue-500/50 dark:border-blue-500/30 bg-white dark:bg-neutral-900 p-1.5">
                               <Input
                                 autoFocus
                                 value={renamingTitle}
                                 onChange={(e) => setRenamingTitle(e.target.value)}
-                                className="h-7 border-0 bg-white dark:bg-neutral-900 text-sm"
+                                className="h-6 border-0 bg-white dark:bg-neutral-900 text-sm px-1"
                                 maxLength={50}
                               />
                               <Button
                                 size="icon"
                                 variant="ghost"
-                                className="h-6 w-6"
+                                className="h-5 w-5 shrink-0"
                                 onClick={() => {
                                   // In production, you'd call an API to update the title
                                   setRenameId(null);
@@ -198,10 +198,10 @@ export default function ChatList({
                               <Button
                                 size="icon"
                                 variant="ghost"
-                                className="h-6 w-6"
+                                className="h-5 w-5 shrink-0"
                                 onClick={() => setRenameId(null)}
                               >
-                                <X className="h-3 w-3 text-neutral-400" />
+                                <X className="h-3 w-3 text-neutral-500" />
                               </Button>
                             </div>
                           ) : (
@@ -209,10 +209,10 @@ export default function ChatList({
                             <div className="flex items-center gap-2">
                               <button
                                 onClick={() => onSelectChat(chat.id)}
-                                className={`flex-1 truncate rounded-lg px-3 py-2.5 text-left text-sm transition-all duration-150 ${
+                                className={`flex-1 truncate rounded-lg px-3 py-2 text-left text-sm transition-all duration-150 ${
                                   selectedChatId === chat.id
-                                    ? "bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-50"
-                                    : "text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800"
+                                    ? "bg-neutral-200/60 dark:bg-neutral-800/60 text-neutral-900 dark:text-neutral-50"
+                                    : "text-neutral-700 hover:bg-neutral-100/50 dark:text-neutral-300 dark:hover:bg-neutral-800/30"
                                 }`}
                               >
                                 <span className="line-clamp-1">
@@ -226,9 +226,9 @@ export default function ChatList({
                                   <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="h-8 w-8 opacity-0 transition-opacity group-hover:opacity-100"
+                                    className="h-7 w-7 shrink-0 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
                                   >
-                                    <MoreVertical className="h-4 w-4" />
+                                    <MoreVertical className="h-3.5 w-3.5" />
                                     <span className="sr-only">Options</span>
                                   </Button>
                                 </DropdownMenuTrigger>
