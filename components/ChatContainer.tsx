@@ -52,7 +52,7 @@ function MessageBubble({ msg }: { msg: Message }) {
         return (
           <pre
             key={idx}
-            className="my-2 overflow-x-auto rounded-lg bg-neutral-950 p-3 text-neutral-50 text-xs leading-relaxed border border-neutral-800/50 dark:bg-neutral-900 dark:border-neutral-700/50"
+            className="my-2 overflow-x-auto rounded-lg bg-neutral-800 p-3 text-neutral-50 text-xs leading-relaxed border border-neutral-700/50 dark:bg-neutral-900 dark:border-neutral-700"
           >
             <code>{part.trim()}</code>
           </pre>
@@ -72,14 +72,14 @@ function MessageBubble({ msg }: { msg: Message }) {
       className={`flex ${
         msg.role === "user" ? "justify-end" : "justify-start"
       }`}
-      initial={{ opacity: 0, y: 20, scale: 0.96 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.15 }}
       onMouseEnter={() => setHoveredId(msg.id)}
       onMouseLeave={() => setHoveredId(null)}
     >
       <div className="flex max-w-xl items-end gap-2">
-        {msg.role === "assistant" && hoveredId === msg.id && (
+        {msg.role === "assistant" && (
           <Button
             variant="ghost"
             size="icon"
@@ -90,27 +90,25 @@ function MessageBubble({ msg }: { msg: Message }) {
             {copiedId === msg.id ? (
               <Check className="h-3.5 w-3.5 text-green-600" />
             ) : (
-              <Copy className="h-3.5 w-3.5 text-neutral-600 dark:text-neutral-400" />
+              <Copy className="h-3.5 w-3.5 text-neutral-500 dark:text-neutral-400" />
             )}
           </Button>
         )}
 
         <Card
-          className={`rounded-lg px-4 py-2.5 transition-[colors,border-color,background-color] duration-150 ${
+          className={`rounded-lg px-4 py-2.5 transition-colors duration-150 ${
             msg.role === "user"
-              ? "bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800"
-              : "border border-neutral-300/50 bg-white text-neutral-900 hover:bg-neutral-50 hover:border-neutral-300 dark:border-neutral-700/50 dark:bg-neutral-900 dark:text-neutral-50 dark:hover:bg-neutral-800/50 dark:hover:border-neutral-700"
+              ? "bg-indigo-600 text-white dark:bg-indigo-600"
+              : "bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-50"
           }`}
         >
           <div className="space-y-2">
             {renderContent()}
             <div
               className={`text-xs transition-opacity duration-150 ${
-                hoveredId === msg.id ? "opacity-100" : "opacity-0"
-              } ${
                 msg.role === "user"
-                  ? "text-blue-100"
-                  : "text-neutral-500 dark:text-neutral-400"
+                  ? "text-indigo-100"
+                  : "text-neutral-600 dark:text-neutral-400"
               }`}
             >
               {formatTime(msg.created_at)}
@@ -157,18 +155,17 @@ function ChatContainerComponent({
 
   return (
     <ScrollArea className="flex-1">
-      <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl shadow-[0_0_60px_rgba(99,102,241,0.15)] m-6">
-        <div className="mx-auto max-w-3xl space-y-3 p-6">
+      <div className="h-full flex flex-col">
+        <div className="flex-1 mx-auto w-full max-w-3xl space-y-4 px-6 py-6">
         {/* Empty State */}
         {formattedMessages.length === 0 && !isLoading && (
-          <div className="flex h-96 items-center justify-center rounded-lg border border-dashed border-neutral-300/50 bg-neutral-50/50 dark:border-neutral-700/50 dark:bg-neutral-900/50">
+          <div className="flex h-96 items-center justify-center rounded-lg border border-dashed border-neutral-200 dark:border-neutral-700">
             <div className="text-center">
-              <div className="mb-3 text-4xl">💬</div>
-              <p className="text-base font-semibold text-neutral-900 dark:text-neutral-100">
-                Start a Calsyx conversation
+              <p className="text-base font-semibold text-neutral-700 dark:text-neutral-300">
+                Start a conversation with Calsyx
               </p>
-              <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
-                Begin by sending your first message below
+              <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
+                Send your first message below to begin
               </p>
             </div>
           </div>
@@ -182,7 +179,7 @@ function ChatContainerComponent({
         {/* Loading State */}
         {isLoading && (
           <div className="flex justify-start animate-in fade-in-0 slide-in-from-bottom-2 duration-200">
-            <Card className="rounded-lg border border-neutral-300/50 bg-white px-4 py-2.5 dark:border-neutral-700/50 dark:bg-neutral-900">
+            <Card className="rounded-lg bg-neutral-100 px-4 py-2.5 dark:bg-neutral-800">
               <div className="flex gap-2">
                 <Skeleton className="h-2 w-2 animate-pulse rounded-full" />
                 <Skeleton className="h-2 w-2 animate-pulse rounded-full" style={{ animationDelay: "100ms" }} />

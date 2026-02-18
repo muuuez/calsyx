@@ -13,9 +13,7 @@ export default function RootLayout({
 }>): React.ReactElement {
   return (
     <html lang="en">
-      <body className="bg-white font-sans text-neutral-900 dark:bg-[#0A0F1C] dark:text-neutral-50">
-        <div className="fixed inset-0 -z-10 bg-gradient-to-br from-[#0f172a] via-[#0b1120] to-[#020617]" />
-        <div className="fixed inset-0 -z-10 animate-gradient bg-[length:200%_200%] bg-gradient-to-br from-indigo-900/20 via-slate-900/10 to-cyan-900/20" />
+      <body className="bg-white font-sans text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50">
         {children}
       </body>
     </html>

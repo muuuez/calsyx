@@ -13,16 +13,13 @@ export default function AuthLayout({
   description,
 }: AuthLayoutProps) {
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-neutral-50 dark:bg-neutral-950">
+    <div className="relative min-h-screen w-full overflow-hidden bg-white dark:bg-neutral-950">
       {/* Content */}
       <div className="flex min-h-screen w-full items-center justify-center px-4 py-12">
         <div className="w-full max-w-md">
           {/* Header */}
           {title && (
-            <div className="mb-8 space-y-4 text-center">
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-600">
-                <span className="text-xl font-bold text-white">AI</span>
-              </div>
+            <div className="mb-8 space-y-3 text-center">
               <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50">
                 {title}
               </h1>
@@ -35,7 +32,7 @@ export default function AuthLayout({
           )}
 
           {/* Form Card */}
-          <Card className="animate-in fade-in-0 slide-in-from-bottom-8 duration-300 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_0_60px_rgba(99,102,241,0.25)]">
+          <Card className="border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 shadow-sm">
             {children}
           </Card>
         </div>

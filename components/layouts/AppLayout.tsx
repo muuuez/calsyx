@@ -51,8 +51,8 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
 
       {/* Main Content */}
       <div className="flex flex-1 flex-col overflow-hidden">
-        {/* Header Bar - Premium SaaS */}
-        <header className="shrink-0 border-b border-neutral-200/50 dark:border-neutral-800/50 bg-white dark:bg-neutral-950 px-6 py-3">
+        {/* Header Bar */}
+        <header className="shrink-0 border-b border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-950 px-6 py-3">
           <div className="flex items-center justify-between gap-4">
             {/* Left: Mobile Menu + Title */}
             <div className="flex items-center gap-3">
@@ -104,14 +104,13 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
         </header>
 
         {/* Main Content Area */}
-        <div className="relative flex flex-1 flex-col overflow-hidden">
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-indigo-500/20 blur-[120px] rounded-full -rotate-12 -z-10" />
+        <div className="flex flex-1 flex-col overflow-hidden">
           {children}
         </div>
 
-        {/* Mobile Floating Action Button - Premium */}
+        {/* Mobile Floating Action Button */}
         <Button
-          className="fixed bottom-6 right-6 hidden gap-2 rounded-lg bg-blue-600 hover:bg-blue-700 active:scale-95 shadow-lg transition-transform duration-100 max-sm:flex sm:hidden"
+          className="fixed bottom-6 right-6 hidden gap-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 active:scale-95 shadow-lg transition-transform duration-100 max-sm:flex sm:hidden"
           onClick={() => {
             // This would trigger new chat from the page component
             const event = new CustomEvent("createNewChat");
@@ -123,7 +122,7 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
         </Button>
       </div>
 
-      {/* Keyboard Shortcuts Help Modal - Premium */}
+      {/* Keyboard Shortcuts Help Modal */}
       <Dialog open={showHelp} onOpenChange={setShowHelp}>
         <DialogContent className="max-w-md">
           <DialogHeader>
