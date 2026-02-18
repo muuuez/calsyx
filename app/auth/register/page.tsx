@@ -197,7 +197,7 @@ export default function RegisterPage() {
                 <div className="flex items-center gap-2">
                   <div className="flex-1 overflow-hidden rounded-lg bg-neutral-200 dark:bg-neutral-800">
                     <div
-                      className={`h-2 transition-all ${strength.color}`}
+                      className={`h-2 transition-[width] duration-200 ${strength.color}`}
                       style={{
                         width: `${(strength.score / 6) * 100}%`,
                       }}

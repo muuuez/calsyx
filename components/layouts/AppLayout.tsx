@@ -38,10 +38,10 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
           {showMobileSidebar && (
             <>
               <div
-                className="fixed inset-0 z-40 bg-black/50 lg:hidden animate-in fade-in-0 duration-300"
+                className="fixed inset-0 z-40 bg-black/50 lg:hidden animate-in fade-in-0 duration-200"
                 onClick={() => setShowMobileSidebar(false)}
               />
-              <div className="fixed bottom-0 left-0 right-0 top-0 z-50 w-64 lg:hidden animate-in slide-in-from-left-full duration-300">
+              <div className="fixed bottom-0 left-0 right-0 top-0 z-50 w-64 lg:hidden animate-in slide-in-from-left-full duration-200">
                 {sidebar}
               </div>
             </>
@@ -121,7 +121,7 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
 
         {/* Mobile Floating Action Button - Premium */}
         <Button
-          className="fixed bottom-6 right-6 hidden gap-2 rounded-lg bg-blue-600 hover:bg-blue-700 hover:scale-[1.03] active:scale-95 shadow-lg transition-transform duration-150 max-sm:flex sm:hidden"
+          className="fixed bottom-6 right-6 hidden gap-2 rounded-lg bg-blue-600 hover:bg-blue-700 active:scale-95 shadow-lg transition-transform duration-100 max-sm:flex sm:hidden"
           onClick={() => {
             // This would trigger new chat from the page component
             const event = new CustomEvent("createNewChat");

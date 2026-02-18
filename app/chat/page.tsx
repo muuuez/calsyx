@@ -403,7 +403,7 @@ export default function ChatPage(): React.ReactElement {
           <ChatInput onSend={handleSendMessage} isLoading={isLoading} />
         </>
       ) : (
-        <div className="flex flex-1 items-center justify-center animate-in fade-in-0 slide-in-from-bottom-6 duration-500">
+        <div className="flex flex-1 items-center justify-center animate-in fade-in-0 slide-in-from-bottom-6 duration-300">
           <div className="space-y-4 text-center">
             <div className="inline-block">
               <div className="text-6xl">💬</div>

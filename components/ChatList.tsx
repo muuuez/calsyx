@@ -209,7 +209,7 @@ export default function ChatList({
                             <div className="flex items-center gap-2">
                               <button
                                 onClick={() => onSelectChat(chat.id)}
-                                className={`flex-1 truncate rounded-lg pl-3 pr-3 py-2 text-left text-sm transition-all duration-150 ${
+                                className={`flex-1 truncate rounded-lg pl-3 pr-3 py-2 text-left text-sm transition-[background-color,padding-left,transform] duration-150 ${
                                   selectedChatId === chat.id
                                     ? "bg-neutral-200/60 dark:bg-neutral-800/60 text-neutral-900 dark:text-neutral-50 scale-[1.01]"
                                     : "text-neutral-700 hover:bg-neutral-100/50 hover:pl-[14px] dark:text-neutral-300 dark:hover:bg-neutral-800/30"
@@ -235,7 +235,7 @@ export default function ChatList({
                                 <DropdownMenuContent align="end" className="w-48 animate-in fade-in-0 slide-in-from-top-2 duration-200">
                                   <DropdownMenuItem
                                     onClick={() => toggleFavorite(chat.id)}
-                                    className="cursor-pointer animate-in fade-in-0 duration-200"
+                                    className="cursor-pointer"
                                   >
                                     <Star
                                       className={`mr-2 h-4 w-4 ${
@@ -248,7 +248,7 @@ export default function ChatList({
                                   </DropdownMenuItem>
                                   <DropdownMenuItem
                                     onClick={() => startRename(chat)}
-                                    className="cursor-pointer animate-in fade-in-0 duration-200 delay-50"
+                                    className="cursor-pointer"
                                   >
                                     <Edit2 className="mr-2 h-4 w-4" />
                                     Rename
@@ -256,7 +256,7 @@ export default function ChatList({
                                   <Separator />
                                   <DropdownMenuItem
                                     onClick={() => setDeleteConfirm(chat.id)}
-                                    className="cursor-pointer text-red-600 dark:text-red-400 animate-in fade-in-0 duration-200 delay-100"
+                                    className="cursor-pointer text-red-600 dark:text-red-400"
                                   >
                                     <Trash2 className="mr-2 h-4 w-4" />
                                     Delete
