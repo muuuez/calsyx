@@ -141,7 +141,7 @@ export default function RegisterPage() {
                 placeholder="you@example.com"
                 required
                 disabled={isLoading}
-                className="h-9 border border-neutral-300/50 bg-white text-sm focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700/50 dark:bg-neutral-900"
+                className="h-9 border border-neutral-300/50 bg-white text-sm transition-colors duration-150 focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700/50 dark:bg-neutral-900"
               />
               {suggestedDomain && emailReqs.domain && (
                 <button
@@ -174,7 +174,7 @@ export default function RegisterPage() {
                 placeholder="Create a strong password"
                 required
                 disabled={isLoading}
-                className="h-9 border border-neutral-300/50 bg-white pr-9 text-sm focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700/50 dark:bg-neutral-900"
+                className="h-9 border border-neutral-300/50 bg-white pr-9 text-sm transition-colors duration-150 focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700/50 dark:bg-neutral-900"
               />
               <Button
                 type="button"
@@ -288,7 +288,7 @@ export default function RegisterPage() {
                 placeholder="Re-enter your password"
                 required
                 disabled={isLoading}
-                className="h-9 border border-neutral-300/50 bg-white pr-9 text-sm focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700/50 dark:bg-neutral-900"
+                className="h-9 border border-neutral-300/50 bg-white pr-9 text-sm transition-colors duration-150 focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700/50 dark:bg-neutral-900"
               />
               <Button
                 type="button"

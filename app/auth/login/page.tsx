@@ -86,7 +86,7 @@ export default function LoginPage() {
               placeholder="you@example.com"
               required
               disabled={isLoading}
-              className="h-9 border border-neutral-300/50 bg-white text-sm focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700/50 dark:bg-neutral-900"
+              className="h-9 border border-neutral-300/50 bg-white text-sm transition-colors duration-150 focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700/50 dark:bg-neutral-900"
             />
           </div>
 
@@ -115,7 +115,7 @@ export default function LoginPage() {
                 placeholder="••••••••"
                 required
                 disabled={isLoading}
-                className="h-9 border border-neutral-300/50 bg-white pr-9 text-sm focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700/50 dark:bg-neutral-900"
+                className="h-9 border border-neutral-300/50 bg-white pr-9 text-sm transition-colors duration-150 focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700/50 dark:bg-neutral-900"
               />
               <Button
                 type="button"
