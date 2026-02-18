@@ -68,7 +68,7 @@ function MessageBubble({ msg }: { msg: Message }) {
   return (
     <div
       key={msg.id}
-      className={`flex animate-in slide-in-from-bottom-2 transition-all duration-300 ${
+      className={`flex animate-in fade-in-0 slide-in-from-bottom-2 duration-200 ${
         msg.role === "user" ? "justify-end" : "justify-start"
       }`}
       onMouseEnter={() => setHoveredId(msg.id)}
@@ -92,7 +92,7 @@ function MessageBubble({ msg }: { msg: Message }) {
         )}
 
         <Card
-          className={`rounded-lg px-4 py-2.5 transition-all duration-150 ${
+          className={`rounded-lg px-4 py-2.5 hover:-translate-y-0.5 transition-[colors,transform,border-color] duration-150 ${
             msg.role === "user"
               ? "bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800"
               : "border border-neutral-300/50 bg-white text-neutral-900 hover:border-neutral-300 dark:border-neutral-700/50 dark:bg-neutral-900 dark:text-neutral-50 dark:hover:border-neutral-700"
@@ -152,7 +152,7 @@ function ChatContainerComponent({
   const formattedMessages = useMemo(() => messages, [messages]);
 
   return (
-    <ScrollArea className="flex-1 bg-neutral-50 dark:bg-neutral-950">
+    <ScrollArea className="flex-1">
       <div className="mx-auto max-w-3xl space-y-3 p-6">
         {/* Empty State */}
         {formattedMessages.length === 0 && !isLoading && (
@@ -176,7 +176,7 @@ function ChatContainerComponent({
 
         {/* Loading State */}
         {isLoading && (
-          <div className="flex justify-start animate-in slide-in-from-bottom-2">
+          <div className="flex justify-start animate-in fade-in-0 slide-in-from-bottom-2 duration-200">
             <Card className="rounded-lg border border-neutral-300/50 bg-white px-4 py-2.5 dark:border-neutral-700/50 dark:bg-neutral-900">
               <div className="flex gap-2">
                 <Skeleton className="h-2 w-2 animate-pulse rounded-full" />
