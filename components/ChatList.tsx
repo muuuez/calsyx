@@ -1,8 +1,6 @@
 "use client";
 
 import { useCallback, useState, useMemo } from "react";
-import { BRAND } from "@/lib/brand";
-import { Logo } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -127,12 +125,6 @@ export default function ChatList({
     <>
       {/* Sidebar */}
       <div className="flex w-64 flex-col border-r border-neutral-300/50 bg-white dark:border-neutral-700/50 dark:bg-neutral-950">
-        {/* Branding Section */}
-        <div className="flex items-center gap-2 border-b border-neutral-300/50 px-4 py-4 dark:border-neutral-700/50">
-          <Logo size="sm" />
-          <span className="font-semibold text-neutral-900 dark:text-neutral-50">{BRAND.name}</span>
-        </div>
-
         {/* New Chat Button - Sticky Top */}
         <div className="shrink-0 space-y-3 border-b border-neutral-300/50 bg-white p-4 dark:border-neutral-700/50 dark:bg-neutral-950">
           <Button

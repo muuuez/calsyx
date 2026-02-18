@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { BRAND } from "@/lib/brand";
-import { Logo } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
 import { Menu, Plus, Moon, Sun, HelpCircle, Settings } from "lucide-react";
 import {
@@ -40,10 +38,10 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
           {showMobileSidebar && (
             <>
               <div
-                className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+                className="fixed inset-0 z-40 bg-black/50 lg:hidden animate-in fade-in-0 duration-300"
                 onClick={() => setShowMobileSidebar(false)}
               />
-              <div className="fixed bottom-0 left-0 right-0 top-0 z-50 w-64 lg:hidden">
+              <div className="fixed bottom-0 left-0 right-0 top-0 z-50 w-64 lg:hidden animate-in slide-in-from-left-full duration-300">
                 {sidebar}
               </div>
             </>
@@ -54,9 +52,9 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
       {/* Main Content */}
       <div className="flex flex-1 flex-col overflow-hidden">
         {/* Header Bar - Premium SaaS */}
-        <header className="shrink-0 border-b border-neutral-200/50 dark:border-neutral-800/50 bg-white dark:bg-neutral-950 px-6 py-3 h-14">
+        <header className="shrink-0 border-b border-neutral-200/50 dark:border-neutral-800/50 bg-white dark:bg-neutral-950 px-6 py-3">
           <div className="flex items-center justify-between gap-4">
-            {/* Left: Mobile Menu + Logo + Brand */}
+            {/* Left: Mobile Menu + Title */}
             <div className="flex items-center gap-3">
               {sidebar && (
                 <Button
@@ -69,10 +67,10 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
                   <span className="sr-only">Toggle sidebar</span>
                 </Button>
               )}
-              <Logo size="sm" />
-              <span className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">
-                {BRAND.name}
-              </span>
+              <h1 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">
+
+                AI Chatbox
+              </h1>
             </div>
 
             {/* Right: Actions */}
@@ -123,7 +121,7 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
 
         {/* Mobile Floating Action Button - Premium */}
         <Button
-          className="fixed bottom-6 right-6 hidden gap-2 rounded-lg bg-blue-600 hover:bg-blue-700 shadow-lg max-sm:flex sm:hidden"
+          className="fixed bottom-6 right-6 hidden gap-2 rounded-lg bg-blue-600 hover:bg-blue-700 hover:scale-[1.03] active:scale-95 shadow-lg transition-transform duration-150 max-sm:flex sm:hidden"
           onClick={() => {
             // This would trigger new chat from the page component
             const event = new CustomEvent("createNewChat");

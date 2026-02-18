@@ -3,7 +3,6 @@
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { BRAND } from "@/lib/brand";
 import AuthLayout from "@/components/layouts/AuthLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -55,7 +54,7 @@ export default function LoginPage() {
   );
 
   return (
-    <AuthLayout title={`Welcome to ${BRAND.name}`} description="Sign in to your account">
+    <AuthLayout title="Welcome back" description="Sign in to your account">
       <CardContent className="space-y-4 p-6">
         {/* Error Alert */}
         {error && (
