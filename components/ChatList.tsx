@@ -125,8 +125,18 @@ export default function ChatList({
     <>
       {/* Sidebar */}
       <div className="flex w-64 flex-col border-r border-neutral-300/50 bg-white dark:border-neutral-700/50 dark:bg-neutral-950">
-        {/* New Chat Button - Sticky Top */}
-        <div className="shrink-0 space-y-3 border-b border-neutral-300/50 bg-white p-4 dark:border-neutral-700/50 dark:bg-neutral-950">
+        {/* Brand Header */}
+        <div className="flex shrink-0 items-center gap-2 border-b border-neutral-300/50 bg-white px-4 py-4 dark:border-neutral-700/50 dark:bg-neutral-950">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 dark:bg-blue-700">
+            <span className="text-sm font-bold text-white">C</span>
+          </div>
+          <h2 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">
+            Calsyx
+          </h2>
+        </div>
+
+        {/* New Chat Button */}
+        <div className="shrink-0 border-b border-neutral-300/50 bg-white p-4 dark:border-neutral-700/50 dark:bg-neutral-950">
           <Button
             onClick={onNewChat}
             className="w-full gap-2 rounded-lg bg-blue-600 dark:bg-blue-700"
@@ -135,8 +145,10 @@ export default function ChatList({
             <Plus className="h-4 w-4" />
             New Chat
           </Button>
+        </div>
 
-          {/* Search Input */}
+        {/* Search Input */}
+        <div className="shrink-0 border-b border-neutral-300/50 bg-white p-4 dark:border-neutral-700/50 dark:bg-neutral-950">
           <div className="relative">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-neutral-400" />
             <Input
