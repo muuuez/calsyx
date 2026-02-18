@@ -1,6 +1,7 @@
 "use client";
 
 import { memo, useEffect, useRef, useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -66,11 +67,14 @@ function MessageBubble({ msg }: { msg: Message }) {
   };
 
   return (
-    <div
+    <motion.div
       key={msg.id}
-      className={`flex animate-in fade-in-0 slide-in-from-bottom-2 duration-200 ${
+      className={`flex ${
         msg.role === "user" ? "justify-end" : "justify-start"
       }`}
+      initial={{ opacity: 0, y: 20, scale: 0.96 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setHoveredId(msg.id)}
       onMouseLeave={() => setHoveredId(null)}
     >
@@ -130,7 +134,7 @@ function MessageBubble({ msg }: { msg: Message }) {
           </Button>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -153,7 +157,8 @@ function ChatContainerComponent({
 
   return (
     <ScrollArea className="flex-1">
-      <div className="mx-auto max-w-3xl space-y-3 p-6">
+      <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl shadow-[0_0_60px_rgba(99,102,241,0.15)] m-6">
+        <div className="mx-auto max-w-3xl space-y-3 p-6">
         {/* Empty State */}
         {formattedMessages.length === 0 && !isLoading && (
           <div className="flex h-96 items-center justify-center rounded-lg border border-dashed border-neutral-300/50 bg-neutral-50/50 dark:border-neutral-700/50 dark:bg-neutral-900/50">
@@ -188,6 +193,7 @@ function ChatContainerComponent({
         )}
 
         <div ref={bottomRef} />
+      </div>
       </div>
     </ScrollArea>
   );

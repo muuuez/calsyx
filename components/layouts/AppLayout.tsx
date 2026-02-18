@@ -104,7 +104,8 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
         </header>
 
         {/* Main Content Area */}
-        <div className="flex flex-1 flex-col overflow-hidden">
+        <div className="relative flex flex-1 flex-col overflow-hidden">
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-indigo-500/20 blur-[120px] rounded-full -rotate-12 -z-10" />
           {children}
         </div>
 

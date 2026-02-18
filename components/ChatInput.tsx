@@ -74,7 +74,7 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
                   onClick={handleSend}
                   disabled={!message.trim() || isLoading}
                   size="icon"
-                  className="h-9 w-9 shrink-0 bg-blue-600 hover:bg-blue-700 active:scale-95 transition-transform duration-100 dark:bg-blue-700 dark:hover:bg-blue-800"
+                  className="h-9 w-9 shrink-0 bg-gradient-to-r from-indigo-500 to-cyan-500 hover:shadow-[0_0_25px_rgba(99,102,241,0.6)] active:scale-95 transition-all duration-200"
                 >
                   {isLoading ? (
                     <Loader2 className="h-4 w-4 animate-spin" />

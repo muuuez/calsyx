@@ -221,10 +221,10 @@ export default function ChatList({
                             <div className="flex items-center gap-2">
                               <button
                                 onClick={() => onSelectChat(chat.id)}
-                                className={`flex-1 truncate rounded-lg pl-3 pr-3 py-2 text-left text-sm transition-[background-color,padding-left,transform] duration-150 ${
+                                className={`flex-1 truncate rounded-lg pl-3 pr-3 py-2 text-left text-sm transition-all duration-150 relative before:absolute before:left-0 before:transition-opacity before:duration-150 ${
                                   selectedChatId === chat.id
-                                    ? "bg-neutral-200/60 dark:bg-neutral-800/60 text-neutral-900 dark:text-neutral-50 scale-[1.01]"
-                                    : "text-neutral-700 hover:bg-neutral-100/50 hover:pl-[14px] dark:text-neutral-300 dark:hover:bg-neutral-800/30"
+                                    ? "bg-neutral-200/60 dark:bg-neutral-800/60 text-neutral-900 dark:text-neutral-50 before:top-2 before:bottom-2 before:w-[3px] before:bg-indigo-500 before:rounded-full before:opacity-100"
+                                    : "text-neutral-700 hover:bg-neutral-100/50 dark:text-neutral-300 dark:hover:bg-neutral-800/30 before:opacity-0"
                                 }`}
                               >
                                 <span className="line-clamp-1">

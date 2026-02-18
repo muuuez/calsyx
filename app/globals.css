@@ -32,17 +32,17 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Primary Colors - Adjusted for dark mode */
+    /* Primary Colors - Premium Deep Dark */
     --primary: #3b82f6;
     --primary-dark: #60a5fa;
-    --primary-foreground: #0f172a;
+    --primary-foreground: #020617;
     
-    /* Backgrounds */
-    --background: #0f172a;
+    /* Backgrounds - Deep Dark */
+    --background: #0A0F1C;
     --foreground: #f8fafc;
     
     /* Secondary */
-    --secondary: #1e293b;
+    --secondary: #0f172a;
     --secondary-foreground: #f1f5f9;
     
     /* Muted / Disabled */
@@ -50,7 +50,7 @@
     --muted-foreground: #94a3b8;
     
     /* Borders */
-    --border: #334155;
+    --border: #1e293b;
     
     /* Destructive (Red) */
     --destructive: #f87171;
@@ -328,6 +328,23 @@ input[type="radio"] {
 
 button:disabled {
   @apply cursor-not-allowed opacity-50 hover:no-underline;
+}
+
+/* Gradient Animation - Cinematic Motion */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradientShift 12s ease infinite;
 }
 
 /* Reduced Motion Support - Accessibility */

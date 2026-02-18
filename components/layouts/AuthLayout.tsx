@@ -35,7 +35,7 @@ export default function AuthLayout({
           )}
 
           {/* Form Card */}
-          <Card className="animate-in fade-in-0 slide-in-from-bottom-8 duration-300 border border-neutral-300/50 bg-white shadow-sm rounded-lg dark:border-neutral-700/50 dark:bg-neutral-900">
+          <Card className="animate-in fade-in-0 slide-in-from-bottom-8 duration-300 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_0_60px_rgba(99,102,241,0.25)]">
             {children}
           </Card>
         </div>
