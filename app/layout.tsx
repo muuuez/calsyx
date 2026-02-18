@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AI Chatbox",
-  description: "Chat with AI powered by Google Gemini",
+  title: "Calsyx - AI Conversations",
+  description: "Modern AI-powered conversations with Calsyx",
 };
 
 export default function RootLayout({

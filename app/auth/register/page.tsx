@@ -107,7 +107,7 @@ export default function RegisterPage() {
   return (
     <AuthLayout
       title="Create your account"
-      description="Join to start using AI Chat"
+      description="Start using Calsyx for AI-powered conversations"
     >
       <CardContent className="space-y-4 p-6">
         {/* Error Alert */}

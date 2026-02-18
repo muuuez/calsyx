@@ -94,7 +94,7 @@ export default function ChatList({
   // Filter and group chats
   const groupedChats = useMemo(() => {
     let filtered = chats.filter((chat) =>
-      (chat.title || "Untitled Chat")
+      (chat.title || "New Conversation")
         .toLowerCase()
         .includes(searchQuery.toLowerCase())
     );
@@ -228,7 +228,7 @@ export default function ChatList({
                                 }`}
                               >
                                 <span className="line-clamp-1">
-                                  {chat.title || "Untitled Chat"}
+                                  {chat.title || "New Conversation"}
                                 </span>
                               </button>
 

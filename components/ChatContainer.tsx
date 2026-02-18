@@ -160,7 +160,7 @@ function ChatContainerComponent({
             <div className="text-center">
               <div className="mb-3 text-4xl">💬</div>
               <p className="text-base font-semibold text-neutral-900 dark:text-neutral-100">
-                Start a conversation
+                Start a Calsyx conversation
               </p>
               <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
                 Begin by sending your first message below
