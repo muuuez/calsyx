@@ -92,25 +92,25 @@ function MessageBubble({ msg }: { msg: Message }) {
         )}
 
         <Card
-          className={`rounded-lg px-4 py-2.5 hover:-translate-y-0.5 transition-[colors,transform,border-color] duration-150 ${
+          className={`rounded-lg px-4 py-2.5 transition-[colors,border-color,background-color] duration-150 ${
             msg.role === "user"
               ? "bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800"
-              : "border border-neutral-300/50 bg-white text-neutral-900 hover:border-neutral-300 dark:border-neutral-700/50 dark:bg-neutral-900 dark:text-neutral-50 dark:hover:border-neutral-700"
+              : "border border-neutral-300/50 bg-white text-neutral-900 hover:bg-neutral-50 hover:border-neutral-300 dark:border-neutral-700/50 dark:bg-neutral-900 dark:text-neutral-50 dark:hover:bg-neutral-800/50 dark:hover:border-neutral-700"
           }`}
         >
           <div className="space-y-2">
             {renderContent()}
-            {hoveredId === msg.id && (
-              <div
-                className={`text-xs transition-opacity duration-200 ${
-                  msg.role === "user"
-                    ? "text-blue-100"
-                    : "text-neutral-500 dark:text-neutral-400"
-                }`}
-              >
-                {formatTime(msg.created_at)}
-              </div>
-            )}
+            <div
+              className={`text-xs transition-opacity duration-150 ${
+                hoveredId === msg.id ? "opacity-100" : "opacity-0"
+              } ${
+                msg.role === "user"
+                  ? "text-blue-100"
+                  : "text-neutral-500 dark:text-neutral-400"
+              }`}
+            >
+              {formatTime(msg.created_at)}
+            </div>
           </div>
         </Card>
 
