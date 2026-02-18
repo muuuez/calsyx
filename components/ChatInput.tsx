@@ -119,7 +119,7 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
                 placeholder="Type your message... (Shift+Enter for new line)"
                 disabled={isLoading}
                 rows={1}
-                className="resize-none border border-neutral-300 bg-white px-3 py-2 text-sm focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700 dark:bg-neutral-950 dark:text-neutral-50"
+                className="resize-none border border-neutral-300 bg-white px-3 py-2 text-sm transition-colors duration-150 focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700 dark:bg-neutral-950 dark:text-neutral-50"
               />
 
               {/* Action Buttons */}
@@ -129,7 +129,7 @@ export default function ChatInput({ onSend, isLoading }: ChatInputProps) {
                   onClick={handleSend}
                   disabled={!message.trim() || isLoading}
                   size="icon"
-                  className="h-9 w-9 shrink-0 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800"
+                  className="h-9 w-9 shrink-0 bg-blue-600 hover:bg-blue-700 hover:brightness-105 active:scale-95 transition-transform duration-100 dark:bg-blue-700 dark:hover:bg-blue-800"
                 >
                   {isLoading ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
