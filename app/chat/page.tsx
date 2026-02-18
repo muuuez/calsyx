@@ -301,7 +301,7 @@ export default function ChatPage(): React.ReactElement {
     >
       {/* Error Banner - Inside Flex Column */}
       {error && (
-        <div className="flex-shrink-0 border-b border-red-300/50 bg-red-50/50 px-4 py-3 dark:border-red-900/30 dark:bg-red-950/30">
+        <div className="flex-shrink-0 border-b border-red-300/50 bg-red-50/50 px-4 py-3 dark:border-red-900/30 dark:bg-red-950/30 animate-in slide-in-from-top-4 duration-200">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               <AlertCircle className="h-4 w-4 flex-shrink-0 text-red-600 dark:text-red-400 mt-0.5" />
@@ -323,7 +323,7 @@ export default function ChatPage(): React.ReactElement {
       {selectedChatId ? (
         <>
           {/* Chat Header */}
-          <div className="flex-shrink-0 border-b border-neutral-200 bg-white px-6 py-4 dark:border-neutral-800 dark:bg-neutral-950">
+          <div key={selectedChatId} className="flex-shrink-0 border-b border-neutral-200 bg-white px-6 py-4 dark:border-neutral-800 dark:bg-neutral-950 animate-in fade-in-0 duration-200">
             <div className="flex items-center justify-between gap-4">
               <div className="min-w-0 flex-1">
                 <h2 className="truncate text-lg font-semibold text-neutral-900 dark:text-neutral-100">
@@ -403,7 +403,7 @@ export default function ChatPage(): React.ReactElement {
           <ChatInput onSend={handleSendMessage} isLoading={isLoading} />
         </>
       ) : (
-        <div className="flex flex-1 items-center justify-center">
+        <div className="flex flex-1 items-center justify-center animate-in fade-in-0 slide-in-from-bottom-6 duration-500">
           <div className="space-y-4 text-center">
             <div className="inline-block">
               <div className="text-6xl">💬</div>
@@ -420,7 +420,7 @@ export default function ChatPage(): React.ReactElement {
               onClick={handleNewChat}
               disabled={isLoading}
               size="lg"
-                className="bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-700 dark:hover:bg-blue-800"
+              className="bg-blue-600 hover:bg-blue-700 active:scale-95 text-white transition-transform duration-100 dark:bg-blue-700 dark:hover:bg-blue-800"
             >
               Start New Chat
             </Button>
