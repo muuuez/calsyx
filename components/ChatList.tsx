@@ -124,63 +124,65 @@ export default function ChatList({
   return (
     <>
       {/* Sidebar */}
-      <div className="flex w-64 flex-col border-r border-neutral-300/50 bg-white dark:border-neutral-700/50 dark:bg-neutral-950">
+      <div className="flex w-64 flex-col border-r border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-950">
         {/* Brand Header */}
-        <div className="flex shrink-0 items-center gap-2 border-b border-neutral-300/50 bg-white px-4 py-4 dark:border-neutral-700/50 dark:bg-neutral-950">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 dark:bg-blue-700">
-            <span className="text-sm font-bold text-white">C</span>
+        <div className="flex-shrink-0 border-b border-neutral-200 bg-white px-4 py-3 dark:border-neutral-700 dark:bg-neutral-950">
+          <div className="flex items-center gap-3">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 dark:bg-indigo-600">
+              <span className="text-sm font-bold text-white">C</span>
+            </div>
+            <h2 className="text-sm font-semibold text-neutral-900 dark:text-neutral-50">
+              Calsyx
+            </h2>
           </div>
-          <h2 className="text-base font-semibold text-neutral-900 dark:text-neutral-50">
-            Calsyx
-          </h2>
         </div>
 
         {/* New Chat Button */}
-        <div className="shrink-0 border-b border-neutral-300/50 bg-white p-4 dark:border-neutral-700/50 dark:bg-neutral-950">
+        <div className="flex-shrink-0 border-b border-neutral-200 bg-white px-4 py-3 dark:border-neutral-700 dark:bg-neutral-950">
           <Button
             onClick={onNewChat}
-            className="w-full gap-2 rounded-lg bg-blue-600 dark:bg-blue-700"
+            className="w-full gap-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-600 dark:hover:bg-indigo-700 active:scale-95 transition-all duration-100 text-white"
             size="sm"
           >
             <Plus className="h-4 w-4" />
-            New Chat
+            <span>New Chat</span>
           </Button>
         </div>
 
         {/* Search Input */}
-        <div className="shrink-0 border-b border-neutral-300/50 bg-white p-4 dark:border-neutral-700/50 dark:bg-neutral-950">
+        <div className="flex-shrink-0 border-b border-neutral-200 bg-white px-4 py-3 dark:border-neutral-700 dark:bg-neutral-950">
           <div className="relative">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-neutral-400" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400" />
             <Input
               type="text"
               placeholder="Search chats..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="h-8 border border-neutral-300/50 bg-white pl-8 text-sm transition-colors duration-150 focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700/50 dark:bg-neutral-900 dark:text-neutral-50"
+              className="h-8 w-full border border-neutral-200 bg-white pl-9 pr-3 text-sm transition-colors duration-200 placeholder:text-neutral-500 focus-visible:border-indigo-500 focus-visible:ring-1 focus-visible:ring-indigo-500/30 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-50 dark:placeholder:text-neutral-400"
             />
           </div>
         </div>
 
         {/* Chat List - Scrollable */}
-        <ScrollArea className="flex-1">
-          <div className="space-y-1 p-4">
+        <ScrollArea className="flex-1 overflow-hidden">
+          <div className="p-3">
             {chats.length === 0 ? (
-              <div className="px-4 py-8 text-center">
-                <p className="text-sm text-neutral-500 dark:text-neutral-400">
+              <div className="py-8 text-center">
+                <p className="text-xs text-neutral-500 dark:text-neutral-400">
                   No chats yet
                 </p>
               </div>
             ) : Object.entries(groupedChats).every(([_, items]) => items.length === 0) ? (
-              <div className="px-4 py-8 text-center">
-                <p className="text-sm text-neutral-500 dark:text-neutral-400">
+              <div className="py-8 text-center">
+                <p className="text-xs text-neutral-500 dark:text-neutral-400">
                   No chats match "{searchQuery}"
                 </p>
               </div>
             ) : (
               Object.entries(groupedChats).map(([group, groupChats]) =>
                 groupChats.length > 0 ? (
-                  <div key={group}>
-                    <div className="px-3 py-2 text-xs font-semibold uppercase text-neutral-500 dark:text-neutral-400">
+                  <div key={group} className="mb-4">
+                    <div className="px-2 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-600 dark:text-neutral-400">
                       {group}
                     </div>
                     <div className="space-y-1">
@@ -188,12 +190,12 @@ export default function ChatList({
                         <div key={chat.id} className="group relative">
                           {renameId === chat.id ? (
                             // Rename Mode
-                            <div className="flex items-center gap-1 rounded-lg border border-blue-500/50 dark:border-blue-500/30 bg-white dark:bg-neutral-900 p-1.5">
+                            <div className="flex items-center gap-1 rounded-lg border border-indigo-500/50 dark:border-indigo-500/30 bg-white dark:bg-neutral-900 p-1.5">
                               <Input
                                 autoFocus
                                 value={renamingTitle}
                                 onChange={(e) => setRenamingTitle(e.target.value)}
-                                className="h-6 border-0 bg-white dark:bg-neutral-900 text-sm px-1"
+                                className="h-6 border-0 bg-white dark:bg-neutral-900 text-sm px-2"
                                 maxLength={50}
                               />
                               <Button
@@ -218,13 +220,13 @@ export default function ChatList({
                             </div>
                           ) : (
                             // Normal Mode
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 group-hover:bg-neutral-100 group-hover:dark:bg-neutral-800/50 rounded-lg px-1 py-1 transition-colors duration-150">
                               <button
                                 onClick={() => onSelectChat(chat.id)}
-                                className={`flex-1 truncate rounded-lg pl-3 pr-3 py-2 text-left text-sm transition-all duration-150 relative before:absolute before:left-0 before:transition-opacity before:duration-150 ${
+                                className={`flex-1 truncate rounded px-2.5 py-2 text-left text-sm font-medium transition-colors duration-150 ${
                                   selectedChatId === chat.id
-                                    ? "bg-neutral-200/60 dark:bg-neutral-800/60 text-neutral-900 dark:text-neutral-50 before:top-2 before:bottom-2 before:w-[3px] before:bg-indigo-500 before:rounded-full before:opacity-100"
-                                    : "text-neutral-700 hover:bg-neutral-100/50 dark:text-neutral-300 dark:hover:bg-neutral-800/30 before:opacity-0"
+                                    ? "bg-indigo-50 text-indigo-900 dark:bg-indigo-900/20 dark:text-indigo-100"
+                                    : "text-neutral-700 dark:text-neutral-300"
                                 }`}
                               >
                                 <span className="line-clamp-1">
@@ -240,23 +242,21 @@ export default function ChatList({
                                     size="icon"
                                     className="h-7 w-7 shrink-0 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
                                   >
-                                    <MoreVertical className="h-3.5 w-3.5" />
+                                    <MoreVertical className="h-4 w-4" />
                                     <span className="sr-only">Options</span>
                                   </Button>
                                 </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end" className="w-48 animate-in fade-in-0 slide-in-from-top-2 duration-200">
+                                <DropdownMenuContent align="end" className="w-40">
                                   <DropdownMenuItem
                                     onClick={() => toggleFavorite(chat.id)}
                                     className="cursor-pointer"
                                   >
                                     <Star
                                       className={`mr-2 h-4 w-4 ${
-                                        favorites.has(chat.id)
-                                          ? "fill-yellow-500 text-yellow-500"
-                                          : ""
+                                        favorites.has(chat.id) ? "fill-yellow-500 text-yellow-500" : ""
                                       }`}
                                     />
-                                    {favorites.has(chat.id) ? "Unstar" : "Star Chat"}
+                                    {favorites.has(chat.id) ? "Unstar" : "Star"}
                                   </DropdownMenuItem>
                                   <DropdownMenuItem
                                     onClick={() => startRename(chat)}
@@ -268,20 +268,13 @@ export default function ChatList({
                                   <Separator />
                                   <DropdownMenuItem
                                     onClick={() => setDeleteConfirm(chat.id)}
-                                    className="cursor-pointer text-red-600 dark:text-red-400"
+                                    className="cursor-pointer text-red-600 dark:text-red-400 focus:bg-red-100/50 focus:dark:bg-red-900/30"
                                   >
                                     <Trash2 className="mr-2 h-4 w-4" />
                                     Delete
                                   </DropdownMenuItem>
                                 </DropdownMenuContent>
                               </DropdownMenu>
-                            </div>
-                          )}
-
-                          {/* Timestamp on Hover */}
-                          {selectedChatId === chat.id && !renameId && (
-                            <div className="px-3 text-xs text-neutral-400 dark:text-neutral-500">
-                              {new Date(chat.created_at).toLocaleDateString()}
                             </div>
                           )}
                         </div>

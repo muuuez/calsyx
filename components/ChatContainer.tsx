@@ -21,7 +21,6 @@ interface ChatContainerProps {
 }
 
 function MessageBubble({ msg }: { msg: Message }) {
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const handleCopy = async () => {
@@ -41,7 +40,7 @@ function MessageBubble({ msg }: { msg: Message }) {
     });
   };
 
-  // Enhanced code block detection and rendering
+  // Render content with code block support
   const renderContent = () => {
     const codeBlockRegex = /```([\s\S]*?)```/g;
     const parts = msg.content.split(codeBlockRegex);
@@ -69,69 +68,70 @@ function MessageBubble({ msg }: { msg: Message }) {
   return (
     <motion.div
       key={msg.id}
-      className={`flex ${
-        msg.role === "user" ? "justify-end" : "justify-start"
-      }`}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.15 }}
-      onMouseEnter={() => setHoveredId(msg.id)}
-      onMouseLeave={() => setHoveredId(null)}
+      className={`flex gap-2 ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2 }}
     >
-      <div className="flex max-w-xl items-end gap-2">
-        {msg.role === "assistant" && (
+      {/* Assistant copy button (left) */}
+      {msg.role === "assistant" && (
+        <div className="shrink-0 help-opacity-0 group-hover:opacity-100 transition-opacity duration-200">
           <Button
             variant="ghost"
             size="icon"
-            className="h-7 w-7 shrink-0 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
+            className="h-7 w-7 opacity-0 hover:opacity-100 transition-opacity duration-200"
             onClick={handleCopy}
             title="Copy message"
           >
             {copiedId === msg.id ? (
-              <Check className="h-3.5 w-3.5 text-green-600" />
+              <Check className="h-4 w-4 text-green-600" />
             ) : (
-              <Copy className="h-3.5 w-3.5 text-neutral-500 dark:text-neutral-400" />
+              <Copy className="h-4 w-4 text-neutral-500 dark:text-neutral-400" />
             )}
           </Button>
-        )}
+        </div>
+      )}
 
-        <Card
-          className={`rounded-lg px-4 py-2.5 transition-colors duration-150 ${
-            msg.role === "user"
-              ? "bg-indigo-600 text-white dark:bg-indigo-600"
-              : "bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-50"
-          }`}
-        >
-          <div className="space-y-2">
-            {renderContent()}
-            <div
-              className={`text-xs transition-opacity duration-150 ${
-                msg.role === "user"
-                  ? "text-indigo-100"
-                  : "text-neutral-600 dark:text-neutral-400"
-              }`}
-            >
-              {formatTime(msg.created_at)}
-            </div>
+      {/* Message Card */}
+      <Card
+        className={`max-w-xl rounded-lg px-4 py-3 transition-colors duration-200 ${
+          msg.role === "user"
+            ? "bg-indigo-600 text-white dark:bg-indigo-600"
+            : "bg-neutral-100 text-neutral-900 dark:bg-neutral-800 dark:text-neutral-50"
+        }`}
+      >
+        <div className="space-y-1">
+          {renderContent()}
+          <div
+            className={`text-xs pt-1 border-t ${
+              msg.role === "user"
+                ? "border-indigo-700 text-indigo-100"
+                : "border-neutral-200 dark:border-neutral-700 text-neutral-500 dark:text-neutral-400"
+            }`}
+          >
+            {formatTime(msg.created_at)}
           </div>
-        </Card>
+        </div>
+      </Card>
 
-        {msg.role === "user" && hoveredId === msg.id && (
+      {/* User copy button (right) */}
+      {msg.role === "user" && (
+        <div className="shrink-0">
           <Button
             variant="ghost"
             size="icon"
-            className="h-7 w-7 shrink-0 opacity-70 hover:opacity-100 transition-opacity duration-150"
+            className="h-7 w-7 opacity-0 hover:opacity-100 transition-opacity duration-200"
             onClick={handleCopy}
             title="Copy message"
           >
             {copiedId === msg.id ? (
-              <Check className="h-3.5 w-3.5 text-green-400" />
+              <Check className="h-4 w-4 text-green-400" />
             ) : (
-              <Copy className="h-3.5 w-3.5 text-white" />
+              <Copy className="h-4 w-4 text-white" />
             )}
           </Button>
-        )}
-      </div>
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -150,47 +150,50 @@ function ChatContainerComponent({
     return () => clearTimeout(timer);
   }, [messages, isLoading]);
 
-  // Memoize formatted messages
   const formattedMessages = useMemo(() => messages, [messages]);
 
   return (
-    <ScrollArea className="flex-1">
-      <div className="h-full flex flex-col">
-        <div className="flex-1 mx-auto w-full max-w-3xl space-y-4 px-6 py-6">
-        {/* Empty State */}
-        {formattedMessages.length === 0 && !isLoading && (
-          <div className="flex h-96 items-center justify-center rounded-lg border border-dashed border-neutral-200 dark:border-neutral-700">
-            <div className="text-center">
-              <p className="text-base font-semibold text-neutral-700 dark:text-neutral-300">
-                Start a conversation with Calsyx
+    <ScrollArea className="flex-1 overflow-hidden">
+      <div className="h-full px-6 py-6">
+        <div className="mx-auto w-full max-w-3xl flex flex-col gap-3">
+          {/* Empty State */}
+          {formattedMessages.length === 0 && !isLoading && (
+            <div className="flex flex-col items-center justify-center py-12">
+              <p className="text-center text-base font-medium text-neutral-700 dark:text-neutral-300">
+                Start a conversation
               </p>
-              <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
-                Send your first message below to begin
+              <p className="mt-1 text-center text-sm text-neutral-500 dark:text-neutral-400">
+                Send a message to begin
               </p>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Messages */}
-        {formattedMessages.map((msg) => (
-          <MessageBubble key={msg.id} msg={msg} />
-        ))}
+          {/* Messages */}
+          {formattedMessages.map((msg) => (
+            <MessageBubble key={msg.id} msg={msg} />
+          ))}
 
-        {/* Loading State */}
-        {isLoading && (
-          <div className="flex justify-start animate-in fade-in-0 slide-in-from-bottom-2 duration-200">
-            <Card className="rounded-lg bg-neutral-100 px-4 py-2.5 dark:bg-neutral-800">
-              <div className="flex gap-2">
-                <Skeleton className="h-2 w-2 animate-pulse rounded-full" />
-                <Skeleton className="h-2 w-2 animate-pulse rounded-full" style={{ animationDelay: "100ms" }} />
-                <Skeleton className="h-2 w-2 animate-pulse rounded-full" style={{ animationDelay: "200ms" }} />
-              </div>
-            </Card>
-          </div>
-        )}
+          {/* Loading State */}
+          {isLoading && (
+            <motion.div
+              className="flex justify-start"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Card className="rounded-lg bg-neutral-100 px-4 py-3 dark:bg-neutral-800">
+                <div className="flex gap-2">
+                  <Skeleton className="h-2 w-2 animate-pulse rounded-full" />
+                  <Skeleton className="h-2 w-2 animate-pulse rounded-full" style={{ animationDelay: "100ms" }} />
+                  <Skeleton className="h-2 w-2 animate-pulse rounded-full" style={{ animationDelay: "200ms" }} />
+                </div>
+              </Card>
+            </motion.div>
+          )}
 
-        <div ref={bottomRef} />
-      </div>
+          {/* Scroll anchor */}
+          <div ref={bottomRef} className="h-0" />
+        </div>
       </div>
     </ScrollArea>
   );
