@@ -6,7 +6,7 @@ import AppLayout from "@/components/layouts/AppLayout";
 import ChatInput from "@/components/ChatInput";
 import ChatContainer from "@/components/ChatContainer";
 import ChatList from "@/components/ChatList";
-import { AlertCircle, Download, Settings, Share2, BarChart3, X } from "lucide-react";
+import { AlertCircle, Download, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -361,36 +361,6 @@ export default function ChatPage(): React.ReactElement {
                 >
                   <Download className="h-4 w-4" />
                   <span className="sr-only">Export</span>
-                </Button>
-
-                {/* Share */}
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  title="Share chat"
-                >
-                  <Share2 className="h-4 w-4" />
-                  <span className="sr-only">Share</span>
-                </Button>
-
-                {/* Settings */}
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  title="Chat settings"
-                >
-                  <Settings className="h-4 w-4" />
-                  <span className="sr-only">Settings</span>
-                </Button>
-
-                {/* Stats */}
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  title="Chat statistics"
-                >
-                  <BarChart3 className="h-4 w-4" />
-                  <span className="sr-only">Stats</span>
                 </Button>
               </div>
             </div>

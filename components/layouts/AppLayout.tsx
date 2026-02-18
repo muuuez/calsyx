@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, Plus, Moon, Sun, HelpCircle, Settings } from "lucide-react";
+import { Menu, Plus, Moon, Sun, HelpCircle } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -99,16 +99,6 @@ export default function AppLayout({ children, sidebar }: AppLayoutProps) {
               >
                 <HelpCircle className="h-5 w-5" />
                 <span className="sr-only">Help</span>
-              </Button>
-
-              {/* Settings Placeholder */}
-              <Button
-                variant="ghost"
-                size="icon"
-                title="Settings"
-              >
-                <Settings className="h-4 w-4" />
-                <span className="sr-only">Settings</span>
               </Button>
             </div>
           </div>
