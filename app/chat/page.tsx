@@ -6,7 +6,7 @@ import AppLayout from "@/components/layouts/AppLayout";
 import ChatInput from "@/components/ChatInput";
 import ChatContainer from "@/components/ChatContainer";
 import ChatList from "@/components/ChatList";
-import { AlertCircle, Download, X } from "lucide-react";
+import { AlertCircle, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -324,45 +324,13 @@ export default function ChatPage(): React.ReactElement {
         <>
           {/* Chat Header */}
           <div key={selectedChatId} className="flex-shrink-0 border-b border-neutral-200 bg-white px-6 py-4 dark:border-neutral-800 dark:bg-neutral-950 animate-in fade-in-0 duration-200">
-            <div className="flex items-center justify-between gap-4">
-              <div className="min-w-0 flex-1">
-                <h2 className="truncate text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-                  {chats.find((c) => c.id === selectedChatId)?.title || "Chat"}
-                </h2>
-                <p className="text-xs text-neutral-500 dark:text-neutral-400">
-                  {messages.length} messages
-                </p>
-              </div>
-
-              {/* Header Actions */}
-              <div className="flex items-center gap-2">
-                {/* Export */}
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  title="Export chat"
-                  onClick={() => {
-                    // Placeholder for export functionality
-                    const content = messages
-                      .map((m) => `${m.role}: ${m.content}`)
-                      .join("\n\n");
-                    const element = document.createElement("a");
-                    element.setAttribute(
-                      "href",
-                      "data:text/plain;charset=utf-8," +
-                        encodeURIComponent(content)
-                    );
-                    element.setAttribute("download", "chat.txt");
-                    element.style.display = "none";
-                    document.body.appendChild(element);
-                    element.click();
-                    document.body.removeChild(element);
-                  }}
-                >
-                  <Download className="h-4 w-4" />
-                  <span className="sr-only">Export</span>
-                </Button>
-              </div>
+            <div>
+              <h2 className="truncate text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+                {chats.find((c) => c.id === selectedChatId)?.title || "Chat"}
+              </h2>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                {messages.length} messages
+              </p>
             </div>
           </div>
 
