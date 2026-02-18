@@ -144,7 +144,7 @@ export default function ChatList({
               placeholder="Search chats..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="h-8 border border-neutral-300/50 bg-white pl-8 text-sm focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700/50 dark:bg-neutral-900 dark:text-neutral-50"
+              className="h-8 border border-neutral-300/50 bg-white pl-8 text-sm transition-colors duration-150 focus-visible:ring-1 focus-visible:ring-blue-500/30 dark:border-neutral-700/50 dark:bg-neutral-900 dark:text-neutral-50"
             />
           </div>
         </div>
@@ -209,10 +209,10 @@ export default function ChatList({
                             <div className="flex items-center gap-2">
                               <button
                                 onClick={() => onSelectChat(chat.id)}
-                                className={`flex-1 truncate rounded-lg px-3 py-2 text-left text-sm transition-all duration-150 ${
+                                className={`flex-1 truncate rounded-lg pl-3 pr-3 py-2 text-left text-sm transition-all duration-150 ${
                                   selectedChatId === chat.id
-                                    ? "bg-neutral-200/60 dark:bg-neutral-800/60 text-neutral-900 dark:text-neutral-50"
-                                    : "text-neutral-700 hover:bg-neutral-100/50 dark:text-neutral-300 dark:hover:bg-neutral-800/30"
+                                    ? "bg-neutral-200/60 dark:bg-neutral-800/60 text-neutral-900 dark:text-neutral-50 scale-[1.01]"
+                                    : "text-neutral-700 hover:bg-neutral-100/50 hover:pl-[14px] dark:text-neutral-300 dark:hover:bg-neutral-800/30"
                                 }`}
                               >
                                 <span className="line-clamp-1">
@@ -232,10 +232,10 @@ export default function ChatList({
                                     <span className="sr-only">Options</span>
                                   </Button>
                                 </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end" className="w-48">
+                                <DropdownMenuContent align="end" className="w-48 animate-in fade-in-0 slide-in-from-top-2 duration-200">
                                   <DropdownMenuItem
                                     onClick={() => toggleFavorite(chat.id)}
-                                    className="cursor-pointer"
+                                    className="cursor-pointer animate-in fade-in-0 duration-200"
                                   >
                                     <Star
                                       className={`mr-2 h-4 w-4 ${
@@ -248,7 +248,7 @@ export default function ChatList({
                                   </DropdownMenuItem>
                                   <DropdownMenuItem
                                     onClick={() => startRename(chat)}
-                                    className="cursor-pointer"
+                                    className="cursor-pointer animate-in fade-in-0 duration-200 delay-50"
                                   >
                                     <Edit2 className="mr-2 h-4 w-4" />
                                     Rename
@@ -256,7 +256,7 @@ export default function ChatList({
                                   <Separator />
                                   <DropdownMenuItem
                                     onClick={() => setDeleteConfirm(chat.id)}
-                                    className="cursor-pointer text-red-600 dark:text-red-400"
+                                    className="cursor-pointer text-red-600 dark:text-red-400 animate-in fade-in-0 duration-200 delay-100"
                                   >
                                     <Trash2 className="mr-2 h-4 w-4" />
                                     Delete
